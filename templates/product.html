@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="product-page">
+    <div class="product-images">
+        {% for img in product.images %}
+        <img src="{{ img }}">
+        {% endfor %}
+    </div>
+
+    <div class="product-info">
+        <h1>{{ product.name }}</h1>
+        <p>{{ product.description }}</p>
+    </div>
+</div>
+
+<a class="whatsapp"
+   href="https://wa.me/90XXXXXXXXXX?text=Merhaba,%20{{ product.name }}%20hakkında%20bilgi%20almak%20istiyorum."
+   target="_blank">
+   WhatsApp’tan Yaz
+</a>
+
+{% endblock %}

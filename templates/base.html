@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title if title else "Kader Ahşap Mobilya" }}</title>
+
+    <link rel="stylesheet" href="/static/css/style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<header class="header">
+    <div class="container nav-container">
+
+        <!-- LOGO -->
+        <div class="brand">
+            <div class="brand-top">
+                <span>KADER</span>
+                <span>AHŞAP</span>
+            </div>
+            <div class="brand-bottom">MOBİLYA</div>
+        </div>
+
+        <!-- MENU -->
+        <nav class="menu">
+
+            <a href="/">Ana Sayfa</a>
+
+            <div class="menu-item has-mega">
+                <a href="#">Ürünler ▾</a>
+
+                <!-- MEGA MENU -->
+                <div class="mega-menu">
+                    <div class="mega-col">
+                        <h4>Masalar</h4>
+                        <a href="#">VIP Masalar</a>
+                        <a href="#">Çalışma Masaları</a>
+                        <a href="#">Toplantı Masaları</a>
+                    </div>
+
+                    <div class="mega-col">
+                        <h4>Dolaplar</h4>
+                        <a href="#">Ofis Dolapları</a>
+                        <a href="#">Özel Üretim</a>
+                    </div>
+
+                    <div class="mega-col">
+                        <h4>Tamamlayıcılar</h4>
+                        <a href="#">Sehpalar</a>
+                        <a href="#">Raf Sistemleri</a>
+                    </div>
+                </div>
+            </div>
+
+            <a href="#iletisim">İletişim</a>
+        </nav>
+
+        <!-- SAĞ TARAF -->
+        <div class="search-box">
+    <span id="searchIcon">🔍</span>
+    <input type="text" placeholder="Ürün ara...">
+</div>
+
+
+        <!-- MOBILE -->
+        <div class="hamburger" onclick="toggleMenu()">☰</div>
+
+    </div>
+</header>
+
+{% block content %}{% endblock %}
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const icon = document.getElementById("searchIcon");
+    const input = document.querySelector(".search-box input");
+
+    if (!icon || !input) {
+        console.log("search bulunamadı");
+        return;
+    }
+
+    icon.addEventListener("click", (e) => {
+        e.stopPropagation();
+        input.classList.toggle("open");
+        input.focus();
+    });
+
+    document.addEventListener("click", () => {
+        input.classList.remove("open");
+    });
+});
+</script>
+
+</body>
+</html>
