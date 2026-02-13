@@ -163,6 +163,84 @@ body {
 /* =========================
    PRODUCTS GRID
 ========================= */
+
+/* =========================
+   KATEGORİ SLIDER
+========================= */
+.category-slider {
+    background: #f8f6f2;
+    padding: 60px 0;
+    overflow: hidden;
+    position: relative;
+}
+
+.category-container {
+    max-width: 1400px;
+    margin: auto;
+    overflow: hidden;
+}
+
+.category-track {
+    display: flex;
+    gap: 40px;
+    transition: transform 0.5s ease;
+    padding: 0 20px;
+}
+
+.category-item {
+    min-width: 200px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.category-circle {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: white;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    margin: 0 auto 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.category-circle:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.15);
+}
+
+.category-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.category-item p {
+    font-size: 15px;
+    font-weight: 500;
+    color: #333;
+}
+
+.category-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 40px;
+}
+
+.category-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.2);
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.category-dot.active {
+    background: #b08d57;
+}
+
 .products {
     max-width: 1200px;
     margin-top: 80px;
@@ -192,6 +270,96 @@ body {
 /* =========================
    PRODUCT PAGE
 ========================= */
+
+/* =========================
+   PROJECTS PAGE
+========================= */
+.projects-page {
+    max-width: 1400px;
+    margin: 120px auto 80px;
+    padding: 0 24px;
+}
+
+.projects-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.projects-header h1 {
+    font-size: 42px;
+    margin-bottom: 16px;
+    color: #111;
+}
+
+.projects-header p {
+    font-size: 18px;
+    color: #666;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: 40px;
+}
+
+.project-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+}
+
+.project-card img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+}
+
+.project-info {
+    padding: 24px;
+    position: relative;
+}
+
+.project-info h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #111;
+}
+
+.project-info p {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 16px;
+}
+
+.project-year {
+    display: inline-block;
+    background: #b08d57;
+    color: white;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+@media (max-width: 768px) {
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .projects-header h1 {
+        font-size: 32px;
+    }
+}
+
 .product-page {
     max-width: 1200px;
     margin: 140px auto 80px;
@@ -335,6 +503,63 @@ body {
 /* =========================
    FOOTER
 ========================= */
+
+/* =========================
+   REFERANSLAR
+========================= */
+.references {
+    background: white;
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.references h2 {
+    font-size: 32px;
+    margin-bottom: 60px;
+    color: #333;
+    letter-spacing: 1px;
+}
+
+.references-container {
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 60px;
+    align-items: center;
+}
+
+.reference-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.reference-item img {
+    max-width: 180px;
+    height: auto;
+    filter: grayscale(100%);
+    opacity: 0.7;
+    transition: all 0.3s ease;
+}
+
+.reference-item img:hover {
+    filter: grayscale(0%);
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+    .references-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+    }
+    
+    .reference-item img {
+        max-width: 140px;
+    }
+}
 
 .footer {
     background: #f6f4ef;

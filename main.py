@@ -22,3 +22,10 @@ def product_detail(request: Request, product_id: int):
         "product.html",
         {"request": request, "product": product}
     )
+
+@app.get("/projeler")
+def projects(request: Request):
+    return templates.TemplateResponse(
+        "projeler.html",
+        {"request": request}
+    )

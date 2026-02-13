@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% block title %}Kader Ahşap Mobilya - Ana Sayfa{% endblock %}
 {% block content %}
 
 <section class="slider">
@@ -20,6 +21,51 @@
     <div class="dots"></div>
 </section>
 
+<!-- KATEGORİ SLIDER -->
+<section class="category-slider">
+    <div class="category-container">
+        <div class="category-track">
+            <div class="category-item">
+                <div class="category-circle">
+                    <img src="/static/images/kanepe.jpg" alt="Ofis Kanepe Takımları">
+                </div>
+                <p>Ofis Kanepe Takımları</p>
+            </div>
+            <div class="category-item">
+                <div class="category-circle">
+                    <img src="/static/images/bekleme.jpg" alt="Bekleme Koltukları">
+                </div>
+                <p>Bekleme Koltukları</p>
+            </div>
+            <div class="category-item">
+                <div class="category-circle">
+                    <img src="/static/images/calisma.jpg" alt="Çalışma Koltukları">
+                </div>
+                <p>Çalışma Koltukları</p>
+            </div>
+            <div class="category-item">
+                <div class="category-circle">
+                    <img src="/static/images/makam.jpg" alt="Makam Koltukları">
+                </div>
+                <p>Makam Koltukları</p>
+            </div>
+            <div class="category-item">
+                <div class="category-circle">
+                    <img src="/static/images/banko.jpg" alt="Bankolar">
+                </div>
+                <p>Bankolar</p>
+            </div>
+            <div class="category-item">
+                <div class="category-circle">
+                    <img src="/static/images/makam-masa.jpg" alt="Makam Masası">
+                </div>
+                <p>Makam Masası</p>
+            </div>
+        </div>
+    </div>
+    <div class="category-dots"></div>
+</section>
+
 <section class="products">
     {% for product in products %}
     <a href="/product/{{ product.id }}" class="product-card">
@@ -27,6 +73,25 @@
         <h3>{{ product.name }}</h3>
     </a>
     {% endfor %}
+</section>
+
+<!-- REFERANSLARIMIZ -->
+<section class="references">
+    <h2>Referanslarımız</h2>
+    <div class="references-container">
+        <div class="reference-item">
+            <img src="/static/images/saglik-bakanligi.png" alt="T.C. Sağlık Bakanlığı">
+        </div>
+        <div class="reference-item">
+            <img src="/static/images/milli-egitim.png" alt="T.C. Milli Eğitim Bakanlığı">
+        </div>
+        <div class="reference-item">
+            <img src="/static/images/kultur-turizm.png" alt="T.C. Kültür ve Turizm Bakanlığı">
+        </div>
+        <div class="reference-item">
+            <img src="/static/images/hava-kuvvetleri.png" alt="Türk Hava Kuvvetleri">
+        </div>
+    </div>
 </section>
 
 <footer class="footer">
@@ -74,4 +139,5 @@
 </footer>
 
 <script src="/static/js/slider.js"></script>
+<script src="/static/js/category-slider.js"></script>
 {% endblock %}
