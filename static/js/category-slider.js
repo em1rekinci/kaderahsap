@@ -1,10 +1,15 @@
-// Kategori Slider
-let categoryPosition = 0;
-const categoryTrack = document.querySelector('.category-track');
-const categoryItems = document.querySelectorAll('.category-item');
-const categoryDotsContainer = document.querySelector('.category-dots');
-
-if (categoryTrack && categoryItems.length > 0) {
+// Kategori Slider - İyileştirilmiş Versiyon
+document.addEventListener('DOMContentLoaded', function() {
+    const categoryTrack = document.querySelector('.category-track');
+    const categoryItems = document.querySelectorAll('.category-item');
+    const categoryDotsContainer = document.querySelector('.category-dots');
+    
+    if (!categoryTrack || categoryItems.length === 0) {
+        console.log('Kategori slider bulunamadı');
+        return;
+    }
+    
+    let currentPage = 0;
     const itemsPerView = window.innerWidth > 768 ? 5 : 2;
     const totalPages = Math.ceil(categoryItems.length / itemsPerView);
     
@@ -13,27 +18,42 @@ if (categoryTrack && categoryItems.length > 0) {
         const dot = document.createElement('div');
         dot.classList.add('category-dot');
         if (i === 0) dot.classList.add('active');
-        dot.addEventListener('click', () => goCategoryPage(i));
+        dot.addEventListener('click', () => goToPage(i));
         categoryDotsContainer.appendChild(dot);
     }
     
-    function goCategoryPage(page) {
-        categoryPosition = page;
+    function goToPage(pageIndex) {
+        currentPage = pageIndex;
+        
+        // Sayfa başına kaç item gösterilecek
         const itemWidth = categoryItems[0].offsetWidth;
-        const gap = 40;
-        const moveAmount = -(itemWidth + gap) * itemsPerView * page;
+        const gap = 60; // CSS'deki gap değeri
+        const moveAmount = -(itemWidth + gap) * itemsPerView * pageIndex;
         
         categoryTrack.style.transform = `translateX(${moveAmount}px)`;
         
-        // Dots güncelle
+        // Dots'u güncelle
         document.querySelectorAll('.category-dot').forEach((dot, index) => {
-            dot.classList.toggle('active', index === page);
+            if (index === pageIndex) {
+                dot.classList.add('active');
+            } else {
+                dot.classList.remove('active');
+            }
         });
     }
     
-    // Otomatik slider
+    // Otomatik kaydırma
     setInterval(() => {
-        categoryPosition = (categoryPosition + 1) % totalPages;
-        goCategoryPage(categoryPosition);
-    }, 4000);
-}
+        currentPage = (currentPage + 1) % totalPages;
+        goToPage(currentPage);
+    }, 5000);
+    
+    // Responsive için window resize
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            goToPage(0); // Reset to first page on resize
+        }, 250);
+    });
+});
