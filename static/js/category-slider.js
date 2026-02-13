@@ -46,7 +46,7 @@
             
             // Her item'in genişliği + gap
             const itemWidth = items[0].offsetWidth;
-            const gap = isMobile ? 30 : 40; // CSS ile aynı gap
+            const gap = isMobile ? 30 : 30; // CSS ile aynı gap (30px)
             const offset = -(itemWidth + gap) * itemsToShow * currentIndex;
             
             track.style.transform = `translateX(${offset}px)`;
@@ -71,8 +71,8 @@
         // Başlat
         createDots();
         
-        // 5 saniyede bir otomatik kay
-        let autoSlideInterval = setInterval(autoSlide, 5000);
+        // 4 saniyede bir otomatik kay
+        let autoSlideInterval = setInterval(autoSlide, 4000);
         
         // Mouse hover'da otomatik kaymayı durdur
         track.addEventListener('mouseenter', function() {
@@ -80,16 +80,26 @@
         });
         
         track.addEventListener('mouseleave', function() {
-            autoSlideInterval = setInterval(autoSlide, 5000);
+            autoSlideInterval = setInterval(autoSlide, 4000);
         });
         
-        // Window resize'da yeniden hesapla
+        // Window resize'da yeniden hesapla (scroll ile karışmaması için sadece width değişiminde)
         let resizeTimer;
+        let lastWidth = window.innerWidth;
+        
         window.addEventListener('resize', function() {
             clearTimeout(resizeTimer);
             resizeTimer = setTimeout(function() {
-                location.reload(); // Basit çözüm: sayfayı yenile
-            }, 500);
+                const currentWidth = window.innerWidth;
+                // Sadece genişlik değiştiyse yeniden hesapla
+                if (Math.abs(currentWidth - lastWidth) > 50) {
+                    lastWidth = currentWidth;
+                    // Sayfayı yenilemek yerine slider'ı sıfırla
+                    currentIndex = 0;
+                    createDots();
+                    goToSlide(0);
+                }
+            }, 300);
         });
     });
     
