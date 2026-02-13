@@ -46,7 +46,7 @@
             
             // Her item'in genişliği + gap
             const itemWidth = items[0].offsetWidth;
-            const gap = isMobile ? 30 : 50;
+            const gap = isMobile ? 30 : 40; // CSS ile aynı gap
             const offset = -(itemWidth + gap) * itemsToShow * currentIndex;
             
             track.style.transform = `translateX(${offset}px)`;
