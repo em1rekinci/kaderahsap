@@ -982,6 +982,7 @@ body {
 
     /* Kategori slider */
     .category-slider { padding: 30px 0; }
+    .category-container { overflow: hidden; }
     .category-track  { gap: 16px; padding: 10px 16px; }
     .category-item   { flex: 0 0 calc(50% - 24px); max-width: calc(50% - 24px); }
     .category-circle { width: 130px; height: 130px; }
