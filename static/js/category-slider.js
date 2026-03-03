@@ -54,9 +54,10 @@
         // Slide'a git
         function goToSlide(index) {
             currentIndex = index;
-            const itemWidth = items[0].offsetWidth;
-            const gap = 30;
-            const offset = -(itemWidth + gap) * itemsToShow * currentIndex;
+            // Her sayfa = itemsToShow adet item. Her item %50 genişlikte (gap yok).
+            // Kaydırma miktarı = container genişliği × pageIndex
+            const containerWidth = track.parentElement.offsetWidth;
+            const offset = -(containerWidth * currentIndex);
             track.style.transform = `translateX(${offset}px)`;
 
             const dots = dotsContainer.querySelectorAll('.category-dot');
