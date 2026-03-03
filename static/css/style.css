@@ -965,9 +965,9 @@ body {
 
     /* Slider */
     .slider {
-        height: 72vw;
-        min-height: 260px;
-        max-height: 520px;
+        height: 85vw;
+        min-height: 300px;
+        max-height: 600px;
     }
     .slide-text {
         left: 14px;
@@ -981,12 +981,13 @@ body {
     .arrow.right { right: 6px; }
 
     /* Kategori slider */
-    .category-slider { padding: 30px 0; overflow: hidden; }
+    .category-slider { padding: 16px 0; overflow: hidden; }
     .category-container { overflow: hidden; padding: 0; }
-    .category-track  { gap: 0; padding: 10px 0; }
+    .category-track  { gap: 0; padding: 6px 0; }
     .category-item   { flex: 0 0 50%; max-width: 50%; padding: 0 10px; }
     .category-circle { width: 130px; height: 130px; }
     .category-item p { font-size: 11px; margin-top: 8px; }
+    .category-dots   { margin-top: 16px; }
 
     /* Ürün kartları */
     .products {
