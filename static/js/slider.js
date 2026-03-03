@@ -8,6 +8,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!slides || total === 0) return;
 
+    // --- Touch desteği ---
+    let touchStartX = 0;
+    let touchEndX = 0;
+    const SWIPE_THRESHOLD = 50;
+
+    slides.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    slides.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        const diff = touchStartX - touchEndX;
+        if (Math.abs(diff) > SWIPE_THRESHOLD) {
+            if (diff > 0) nextSlide();
+            else prevSlide();
+        }
+    }, { passive: true });
+
     function updateSlide() {
         slides.style.transform = `translateX(-${index * 100}%)`;
         document.querySelectorAll(".dot").forEach((d, i) => {
@@ -25,11 +43,11 @@ document.addEventListener("DOMContentLoaded", () => {
         updateSlide();
     }
 
-    // okları globale aç (HTML onclick için)
+    // Okları globale aç (HTML onclick için)
     window.nextSlide = nextSlide;
     window.prevSlide = prevSlide;
 
-    // dots
+    // Dots
     for (let i = 0; i < total; i++) {
         const dot = document.createElement("div");
         dot.className = "dot";
@@ -41,5 +59,15 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     updateSlide();
-    setInterval(nextSlide, 5000);
+
+    // Otomatik slider — mobilde dokunulunca dur
+    let autoTimer = setInterval(nextSlide, 5000);
+
+    slides.addEventListener('touchstart', () => {
+        clearInterval(autoTimer);
+    }, { passive: true });
+
+    slides.addEventListener('touchend', () => {
+        autoTimer = setInterval(nextSlide, 5000);
+    }, { passive: true });
 });

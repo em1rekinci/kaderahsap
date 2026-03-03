@@ -12,6 +12,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
+
+<!-- Menü arkası karartma (mobil) -->
+<div class="menu-overlay" id="menuOverlay" onclick="closeMenu()"></div>
+
 <header class="header">
     <div class="container nav-container">
         <!-- LOGO -->
@@ -22,12 +26,14 @@
             </div>
             <div class="brand-bottom">MOBİLYA</div>
         </div>
+
         <!-- MENU -->
-        <nav class="menu">
-            <a href="/">Ana Sayfa</a>
+        <nav class="menu" id="mainMenu">
+            <a href="/" onclick="closeMenu()">Ana Sayfa</a>
+
             <div class="menu-item has-mega">
-                <a href="#">Ürünler ▾</a>
-                <!-- MEGA MENU -->
+                <a href="#" onclick="toggleSubmenu(event)">Ürünler ▾</a>
+                <!-- DESKTOP MEGA MENU -->
                 <div class="mega-menu">
                     <div class="mega-col">
                         <h4>Masalar</h4>
@@ -48,41 +54,90 @@
                         <a href="#">Bankolar</a>
                     </div>
                 </div>
+                <!-- MOBİL ALT MENÜ -->
+                <div class="mobile-submenu" id="mobileSubmenu">
+                    <a href="#" onclick="closeMenu()">Cilalı Masa Takımı</a>
+                    <a href="#" onclick="closeMenu()">Makam Takımı</a>
+                    <a href="#" onclick="closeMenu()">Yönetici Takımı</a>
+                    <a href="#" onclick="closeMenu()">Personel Takımı</a>
+                    <a href="#" onclick="closeMenu()">Toplantı Masası</a>
+                    <a href="#" onclick="closeMenu()">Ofis Dolapları</a>
+                    <a href="#" onclick="closeMenu()">Keson</a>
+                    <a href="#" onclick="closeMenu()">Bankolar</a>
+                </div>
             </div>
-            <a href="/projeler">Projelerimiz</a>
-            <a href="#iletisim">İletişim</a>
+
+            <a href="/projeler" onclick="closeMenu()">Projelerimiz</a>
+            <a href="#iletisim" onclick="closeMenu()">İletişim</a>
         </nav>
+
         <!-- SAĞ TARAF -->
         <div class="search-box">
-    <span id="searchIcon">🔍</span>
-    <input type="text" placeholder="Ürün ara...">
-</div>
-        <!-- MOBILE -->
-        <div class="hamburger" onclick="toggleMenu()">☰</div>
+            <span id="searchIcon">🔍</span>
+            <input type="text" placeholder="Ürün ara...">
+        </div>
+
+        <!-- MOBILE HAMBURGER -->
+        <div class="hamburger" id="hamburgerBtn" onclick="toggleMenu()">☰</div>
     </div>
 </header>
+
 {% block content %}{% endblock %}
+
 <script>
 document.addEventListener("DOMContentLoaded", () => {
+    // --- ARAMA ---
     const icon = document.getElementById("searchIcon");
     const input = document.querySelector(".search-box input");
-    if (!icon || !input) {
-        console.log("search bulunamadı");
-        return;
+    if (icon && input) {
+        icon.addEventListener("click", (e) => {
+            e.stopPropagation();
+            input.classList.toggle("open");
+            input.focus();
+        });
+        document.addEventListener("click", () => {
+            input.classList.remove("open");
+        });
     }
-    icon.addEventListener("click", (e) => {
-        e.stopPropagation();
-        input.classList.toggle("open");
-        input.focus();
-    });
-    document.addEventListener("click", () => {
-        input.classList.remove("open");
-    });
 });
 
+// --- MOBİL MENÜ ---
 function toggleMenu() {
-    const menu = document.querySelector('.menu');
-    menu.classList.toggle('open');
+    const menu = document.getElementById('mainMenu');
+    const overlay = document.getElementById('menuOverlay');
+    const btn = document.getElementById('hamburgerBtn');
+    const isOpen = menu.classList.contains('open');
+
+    if (isOpen) {
+        closeMenu();
+    } else {
+        menu.classList.add('open');
+        overlay.classList.add('active');
+        btn.textContent = '✕';
+        document.body.style.overflow = 'hidden'; // Arka plan scroll'u engelle
+    }
+}
+
+function closeMenu() {
+    const menu = document.getElementById('mainMenu');
+    const overlay = document.getElementById('menuOverlay');
+    const btn = document.getElementById('hamburgerBtn');
+    menu.classList.remove('open');
+    overlay.classList.remove('active');
+    btn.textContent = '☰';
+    document.body.style.overflow = '';
+}
+
+// --- MOBİL ALT MENÜ (Ürünler accordion) ---
+function toggleSubmenu(e) {
+    // Sadece mobildeysek accordion çalışsın
+    if (window.innerWidth > 768) return;
+    e.preventDefault();
+    const submenu = document.getElementById('mobileSubmenu');
+    submenu.classList.toggle('open');
+    // Ok ikonunu çevir
+    const arrow = e.currentTarget;
+    arrow.textContent = submenu.classList.contains('open') ? 'Ürünler ▴' : 'Ürünler ▾';
 }
 </script>
 </body>

@@ -1,31 +1,42 @@
-// Kategori Slider - Basit ve Çalışan Versiyon
+// Kategori Slider — Touch destekli
 (function() {
     'use strict';
-    
-    // Sayfa tamamen yüklenene kadar bekle
+
     window.addEventListener('DOMContentLoaded', function() {
-        
+
         const track = document.querySelector('.category-track');
         const items = document.querySelectorAll('.category-item');
         const dotsContainer = document.querySelector('.category-dots');
-        
-        if (!track || items.length === 0) {
-            console.log('Kategori slider elemanları bulunamadı');
-            return;
-        }
-        
+
+        if (!track || items.length === 0) return;
+
         let currentIndex = 0;
         const isMobile = window.innerWidth <= 768;
-        const itemsToShow = isMobile ? 2 : 4; // Desktop: 4, Mobil: 2
+        const itemsToShow = isMobile ? 2 : 4;
         const totalPages = Math.ceil(items.length / itemsToShow);
-        
-        console.log('Kategori slider başlatıldı:', {
-            totalItems: items.length,
-            itemsToShow: itemsToShow,
-            totalPages: totalPages,
-            isMobile: isMobile
-        });
-        
+
+        // --- Touch desteği ---
+        let touchStartX = 0;
+        const SWIPE_THRESHOLD = 40;
+
+        track.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        track.addEventListener('touchend', (e) => {
+            const diff = touchStartX - e.changedTouches[0].screenX;
+            if (Math.abs(diff) > SWIPE_THRESHOLD) {
+                if (diff > 0) {
+                    // Sola kaydır (ileri)
+                    currentIndex = Math.min(currentIndex + 1, totalPages - 1);
+                } else {
+                    // Sağa kaydır (geri)
+                    currentIndex = Math.max(currentIndex - 1, 0);
+                }
+                goToSlide(currentIndex);
+            }
+        }, { passive: true });
+
         // Dots oluştur
         function createDots() {
             dotsContainer.innerHTML = '';
@@ -39,62 +50,48 @@
                 dotsContainer.appendChild(dot);
             }
         }
-        
+
         // Slide'a git
         function goToSlide(index) {
             currentIndex = index;
-            
-            // Her item'in genişliği + gap
             const itemWidth = items[0].offsetWidth;
-            const gap = isMobile ? 30 : 30; // CSS ile aynı gap (30px)
+            const gap = 30;
             const offset = -(itemWidth + gap) * itemsToShow * currentIndex;
-            
             track.style.transform = `translateX(${offset}px)`;
-            
-            // Dots'u güncelle
+
             const dots = dotsContainer.querySelectorAll('.category-dot');
             dots.forEach((dot, i) => {
-                if (i === currentIndex) {
-                    dot.classList.add('active');
-                } else {
-                    dot.classList.remove('active');
-                }
+                dot.classList.toggle('active', i === currentIndex);
             });
         }
-        
+
         // Otomatik kayma
         function autoSlide() {
             currentIndex = (currentIndex + 1) % totalPages;
             goToSlide(currentIndex);
         }
-        
-        // Başlat
+
         createDots();
-        
-        // 4 saniyede bir otomatik kay
+
         let autoSlideInterval = setInterval(autoSlide, 4000);
-        
-        // Mouse hover'da otomatik kaymayı durdur
-        track.addEventListener('mouseenter', function() {
-            clearInterval(autoSlideInterval);
-        });
-        
-        track.addEventListener('mouseleave', function() {
+
+        track.addEventListener('mouseenter', () => clearInterval(autoSlideInterval));
+        track.addEventListener('mouseleave', () => {
             autoSlideInterval = setInterval(autoSlide, 4000);
         });
-        
-        // Window resize'da yeniden hesapla (scroll ile karışmaması için sadece width değişiminde)
-        let resizeTimer;
+        track.addEventListener('touchstart', () => clearInterval(autoSlideInterval), { passive: true });
+        track.addEventListener('touchend', () => {
+            autoSlideInterval = setInterval(autoSlide, 4000);
+        }, { passive: true });
+
+        // Resize — sadece genişlik değişiminde
         let lastWidth = window.innerWidth;
-        
+        let resizeTimer;
         window.addEventListener('resize', function() {
             clearTimeout(resizeTimer);
             resizeTimer = setTimeout(function() {
-                const currentWidth = window.innerWidth;
-                // Sadece genişlik değiştiyse yeniden hesapla
-                if (Math.abs(currentWidth - lastWidth) > 50) {
-                    lastWidth = currentWidth;
-                    // Sayfayı yenilemek yerine slider'ı sıfırla
+                if (Math.abs(window.innerWidth - lastWidth) > 50) {
+                    lastWidth = window.innerWidth;
                     currentIndex = 0;
                     createDots();
                     goToSlide(0);
@@ -102,5 +99,5 @@
             }, 300);
         });
     });
-    
+
 })();
