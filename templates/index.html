@@ -2,74 +2,167 @@
 {% block title %}Kader Ahşap Mobilya - Ana Sayfa{% endblock %}
 {% block content %}
 
+<style>
+/* ── MOBİL SLIDER OPTİMİZASYONU ── */
+@media (max-width: 768px) {
+
+  /* Slide genel: dikey akış */
+  .info-slide {
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: flex-start !important;
+    padding: 80px 0 16px !important;
+    min-height: 100% !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+  }
+
+  /* Metin bloğu: padding'i azalt, max-width kaldır */
+  .info-slide > div[style*="padding:0 80px"] {
+    padding: 20px 24px 0 !important;
+    max-width: 100% !important;
+    position: relative !important;
+    z-index: 2 !important;
+  }
+
+  /* Başlık boyutu küçült */
+  .info-slide h2 {
+    font-size: clamp(24px, 7vw, 38px) !important;
+    margin-bottom: 0 !important;
+  }
+
+  /* Slide 2 paragraf */
+  .info-slide p {
+    font-size: 13px !important;
+    line-height: 1.6 !important;
+  }
+
+  /* Sağdaki stat kutucukları: absolute → relative, alta yerleş */
+  .info-slide > div[style*="position:absolute;right:80px"] {
+    position: relative !important;
+    right: auto !important;
+    top: auto !important;
+    transform: none !important;
+    margin: 16px 0 0 24px !important;
+    padding-left: 20px !important;
+  }
+
+  /* Stat rakamları küçült */
+  .info-slide > div[style*="position:absolute;right:80px"] [style*="font-size:42px"],
+  .info-slide > div[style*="position:absolute;right:80px"] [style*="font-size:48px"] {
+    font-size: 28px !important;
+  }
+
+  /* Stat kutucuk padding */
+  .info-slide > div[style*="position:absolute;right:80px"] > div {
+    padding: 10px 0 10px 16px !important;
+    gap: 10px !important;
+  }
+
+  /* SVG garanti rozeti küçült */
+  .info-slide svg[width="130"] {
+    width: 80px !important;
+    height: 80px !important;
+  }
+
+  /* Hashtag: absolute → relative, ortala */
+  .info-slide > div[style*="bottom:65px"] {
+    position: relative !important;
+    bottom: auto !important;
+    left: auto !important;
+    transform: none !important;
+    text-align: center !important;
+    width: 100% !important;
+    padding: 14px 0 6px !important;
+    font-size: 11px !important;
+    letter-spacing: 2px !important;
+  }
+
+  /* Dekoratif büyük arka plan yazıları küçült */
+  .info-slide > div[style*="font-size:280px"],
+  .info-slide > div[style*="font-size:320px"] {
+    font-size: 90px !important;
+  }
+
+  /* Sağ kenar çizgisi gizle */
+  .info-slide > div[style*="width:3px"] {
+    display: none !important;
+  }
+}
+</style>
+
 <section class="slider">
     <div class="slides">
 
 
-        <!-- SLIDE 1: Teslimat -->
-        <div class="slide info-slide" style="background:#1a1612;box-sizing:border-box;padding:67px 0 0;display:flex;flex-direction:column;min-height:100%;">
-            <div style="height:1px;background:linear-gradient(to right,#c8a84b,rgba(200,168,75,0.1));margin:0 clamp(20px,6vw,80px);"></div>
-            <div style="flex:1;display:flex;align-items:center;padding:32px clamp(20px,6vw,80px);gap:24px;">
-                <div style="flex:1;min-width:0;">
-                    <p style="font-size:11px;letter-spacing:5px;text-transform:uppercase;color:#c8a84b;margin:0 0 18px;font-weight:500;">— Teslimat</p>
-                    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(24px,6vw,56px);color:#f5f0e8;line-height:1.15;font-weight:700;margin:0 0 16px;">Tüm Türkiye'ye<br><em style="color:#c8a84b;font-style:italic;">Hızlı &amp; Güvenli</em><br>Teslimat</h2>
-                    <p style="font-size:12px;letter-spacing:3px;color:rgba(200,168,75,0.5);margin:0;">#ofisinikaderebırak</p>
+        <!-- BİLGİ SLIDE 1: Teslimat -->
+        <div class="slide info-slide" style="background:#0e0e0e;display:flex;align-items:center;position:relative;overflow:hidden;padding-top:67px;">
+            <div style="position:absolute;right:-20px;top:50%;transform:translateY(-50%);font-family:'Playfair Display',serif;font-size:280px;font-weight:700;color:rgba(255,255,255,0.025);line-height:1;user-select:none;white-space:nowrap;pointer-events:none;">TESLİMAT</div>
+            <div style="position:relative;z-index:2;padding:0 80px;max-width:700px;">
+                <div style="display:inline-flex;align-items:center;gap:10px;color:#c8a84b;font-size:12px;letter-spacing:4px;text-transform:uppercase;margin-bottom:28px;">
+                    <span style="display:block;width:40px;height:1px;background:#c8a84b;"></span>Teslimat
                 </div>
-                <div style="flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:center;width:clamp(90px,18vw,120px);height:clamp(90px,18vw,120px);border-radius:50%;border:1px solid rgba(200,168,75,0.35);background:rgba(200,168,75,0.05);">
-                    <span style="font-family:'Playfair Display',serif;font-size:clamp(26px,5vw,42px);color:#c8a84b;font-weight:700;line-height:1;">2</span>
-                    <span style="font-size:8px;letter-spacing:3px;text-transform:uppercase;color:rgba(200,168,75,0.6);margin-top:4px;">Yıl</span>
-                    <span style="font-size:7px;letter-spacing:2px;text-transform:uppercase;color:rgba(200,168,75,0.4);margin-top:2px;">Garanti</span>
-                </div>
+                <h2 style="font-family:'Playfair Display',serif;font-size:clamp(36px,5vw,68px);color:#fff;line-height:1.1;font-weight:700;margin-bottom:24px;">Tüm Türkiye'ye<br><em style="color:#c8a84b;font-style:italic;">Hızlı ve Güvenli</em><br>Teslimat</h2>
             </div>
-            <div style="height:1px;background:rgba(200,168,75,0.08);margin:0 clamp(20px,6vw,80px);"></div>
+            <div style="position:absolute;right:80px;top:50%;transform:translateY(-50%);z-index:10;">
+                <svg width="130" height="130" viewBox="0 0 130 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="65" cy="65" r="62" stroke="#c8a84b" stroke-width="1.5" stroke-dasharray="4 3"/>
+                    <circle cx="65" cy="65" r="52" stroke="#c8a84b" stroke-width="1"/>
+                    <text x="65" y="52" text-anchor="middle" font-family="Playfair Display,serif" font-size="36" font-weight="700" fill="#c8a84b">2</text>
+                    <line x1="42" y1="62" x2="88" y2="62" stroke="#c8a84b" stroke-width="0.8" opacity="0.5"/>
+                    <text x="65" y="76" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#c8a84b" letter-spacing="3" font-weight="500">YIL</text>
+                    <text x="65" y="91" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="rgba(200,168,75,0.6)" letter-spacing="3">GARANTİ</text>
+                    <text x="65" y="28" text-anchor="middle" font-size="8" fill="#c8a84b" letter-spacing="6">✦ ✦ ✦</text>
+                </svg>
+            </div>
+            <div style="position:absolute;right:0;top:0;bottom:0;width:3px;background:linear-gradient(to bottom,transparent,#c8a84b 30%,#c8a84b 70%,transparent);opacity:0.3;"></div>
+            <div style="position:absolute;bottom:65px;left:50%;transform:translateX(-50%);font-size:15px;letter-spacing:2px;white-space:nowrap;z-index:10;color:rgba(255,255,255,0.3);">#ofisinikaderebırak</div>
         </div>
 
-        <!-- SLIDE 2: Özel Üretim -->
-        <div class="slide info-slide" style="background:#211d18;box-sizing:border-box;padding:67px 0 0;display:flex;flex-direction:column;min-height:100%;">
-            <div style="height:1px;background:linear-gradient(to right,#c8a84b,rgba(200,168,75,0.1));margin:0 clamp(20px,6vw,80px);"></div>
-            <div style="flex:1;display:flex;align-items:center;padding:32px clamp(20px,6vw,80px);gap:24px;">
-                <div style="flex:1;min-width:0;">
-                    <p style="font-size:11px;letter-spacing:5px;text-transform:uppercase;color:#c8a84b;margin:0 0 18px;font-weight:500;">— Özel Üretim</p>
-                    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(24px,6vw,56px);color:#f5f0e8;line-height:1.15;font-weight:700;margin:0 0 12px;">Her Mekâna<br><em style="color:#c8a84b;font-style:italic;">Özel Tasarım</em><br>Mobilya</h2>
-                    <p style="font-size:14px;color:rgba(245,240,232,0.4);line-height:1.7;margin:0 0 16px;font-weight:300;">Fabrikadan direkt, aracısız fiyat.<br>Ölçülerinize göre üretiyoruz.</p>
-                    <p style="font-size:12px;letter-spacing:3px;color:rgba(200,168,75,0.5);margin:0;">#ofisinikaderebırak</p>
+        <!-- BİLGİ SLIDE 2: Özel Üretim -->
+        <div class="slide info-slide" style="background:#f5f0e8;display:flex;align-items:center;position:relative;overflow:hidden;padding-top:67px;">
+            <div style="position:absolute;left:-10px;top:50%;transform:translateY(-50%);font-family:'Playfair Display',serif;font-size:320px;font-weight:700;color:rgba(184,146,42,0.07);line-height:1;user-select:none;pointer-events:none;">02</div>
+            <div style="position:relative;z-index:2;padding:0 80px;">
+                <div style="display:inline-flex;align-items:center;gap:10px;color:#b8922a;font-size:12px;letter-spacing:4px;text-transform:uppercase;margin-bottom:28px;">
+                    <span style="display:block;width:40px;height:1px;background:#b8922a;"></span>Özel Üretim
                 </div>
-                <div style="flex-shrink:0;display:flex;flex-direction:column;gap:0;border-left:1px solid rgba(200,168,75,0.2);padding-left:clamp(16px,3vw,32px);">
-                    <div style="padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.05);">
-                        <div style="font-family:'Playfair Display',serif;font-size:clamp(22px,4vw,36px);color:#c8a84b;font-weight:700;line-height:1;">100%</div>
-                        <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(245,240,232,0.35);margin-top:4px;">Yerli Üretim</div>
-                    </div>
-                    <div style="padding:12px 0;">
-                        <div style="font-family:'Playfair Display',serif;font-size:clamp(22px,4vw,36px);color:#c8a84b;font-weight:700;line-height:1;">0</div>
-                        <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(245,240,232,0.35);margin-top:4px;">Aracı Maliyet</div>
-                    </div>
+                <h2 style="font-family:'Playfair Display',serif;font-size:clamp(36px,5vw,68px);color:#1a1a1a;line-height:1.1;font-weight:700;margin-bottom:24px;">Her Mekâna<br><em style="color:#b8922a;font-style:italic;">Özel Tasarım</em><br>Mobilya</h2>
+                <p style="color:#5c5448;font-size:16px;line-height:1.8;font-weight:300;">Fabrikadan direkt, aracısız fiyat.<br>Ölçülerinize göre üretiyoruz.</p>
+            </div>
+            <div style="position:absolute;right:80px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:0;z-index:2;">
+                <div style="padding:20px 0 20px 40px;border-left:1px solid rgba(184,146,42,0.2);border-bottom:1px solid rgba(0,0,0,0.06);display:flex;align-items:center;gap:14px;">
+                    <div style="font-family:'Playfair Display',serif;font-size:42px;color:#b8922a;font-weight:700;line-height:1;">100%</div>
+                    <div style="font-size:12px;color:#5c5448;letter-spacing:1px;text-transform:uppercase;line-height:1.4;">Yerli<br>Üretim</div>
+                </div>
+                <div style="padding:20px 0 20px 40px;border-left:1px solid rgba(184,146,42,0.2);display:flex;align-items:center;gap:14px;">
+                    <div style="font-family:'Playfair Display',serif;font-size:42px;color:#b8922a;font-weight:700;line-height:1;">0</div>
+                    <div style="font-size:12px;color:#5c5448;letter-spacing:1px;text-transform:uppercase;line-height:1.4;">Aracı<br>Maliyet</div>
                 </div>
             </div>
-            <div style="height:1px;background:rgba(200,168,75,0.08);margin:0 clamp(20px,6vw,80px);"></div>
+            <div style="position:absolute;bottom:65px;left:50%;transform:translateX(-50%);font-size:15px;letter-spacing:2px;white-space:nowrap;z-index:10;color:rgba(184,146,42,0.45);">#ofisinikaderebırak</div>
         </div>
 
-        <!-- SLIDE 3: Kalite -->
-        <div class="slide info-slide" style="background:#1a1612;box-sizing:border-box;padding:67px 0 0;display:flex;flex-direction:column;min-height:100%;">
-            <div style="height:1px;background:linear-gradient(to right,#c8a84b,rgba(200,168,75,0.1));margin:0 clamp(20px,6vw,80px);"></div>
-            <div style="flex:1;display:flex;align-items:center;padding:32px clamp(20px,6vw,80px);gap:24px;">
-                <div style="flex:1;min-width:0;">
-                    <p style="font-size:11px;letter-spacing:5px;text-transform:uppercase;color:#c8a84b;margin:0 0 18px;font-weight:500;">— Kalite</p>
-                    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(24px,6vw,56px);color:#f5f0e8;line-height:1.15;font-weight:700;margin:0 0 12px;"><em style="color:#c8a84b;font-style:italic;">Ömür Boyu</em><br>Dayanıklılık</h2>
-                    <p style="font-size:14px;color:rgba(245,240,232,0.4);line-height:1.7;margin:0 0 16px;font-weight:300;">Yılların tecrübesiyle kaliteyi<br>ayağınıza taşıyoruz.</p>
-                    <p style="font-size:12px;letter-spacing:3px;color:rgba(200,168,75,0.5);margin:0;">#ofisinikaderebırak</p>
+        <!-- BİLGİ SLIDE 3: Kalite -->
+        <div class="slide info-slide" style="background:#12100e;display:flex;align-items:center;position:relative;overflow:hidden;padding-top:67px;">
+            <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 80% 50%,rgba(200,168,75,0.06) 0%,transparent 70%);pointer-events:none;"></div>
+            <div style="position:relative;z-index:2;padding:0 80px;">
+                <div style="display:inline-flex;align-items:center;gap:10px;color:#c8a84b;font-size:12px;letter-spacing:4px;text-transform:uppercase;margin-bottom:28px;">
+                    <span style="display:block;width:40px;height:1px;background:#c8a84b;"></span>Kalite
                 </div>
-                <div style="flex-shrink:0;display:flex;flex-direction:column;gap:0;border-left:1px solid rgba(200,168,75,0.2);padding-left:clamp(16px,3vw,32px);">
-                    <div style="padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.05);">
-                        <div style="font-family:'Playfair Display',serif;font-size:clamp(22px,4vw,36px);color:#c8a84b;font-weight:700;line-height:1;">20+</div>
-                        <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(245,240,232,0.35);margin-top:4px;">Yıl Deneyim</div>
-                    </div>
-                    <div style="padding:12px 0;">
-                        <div style="font-family:'Playfair Display',serif;font-size:clamp(22px,4vw,36px);color:#c8a84b;font-weight:700;line-height:1;">2</div>
-                        <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(245,240,232,0.35);margin-top:4px;">Yıl Garanti</div>
-                    </div>
+                <h2 style="font-family:'Playfair Display',serif;font-size:clamp(36px,5vw,68px);color:#fff;line-height:1.1;font-weight:700;margin-bottom:24px;"><em style="color:#c8a84b;font-style:italic;">Ömür Boyu</em><br>Dayanıklılık</h2>
+                <p style="color:rgba(255,255,255,0.4);font-size:15px;line-height:1.8;font-weight:300;max-width:400px;">Yılların tecrübesiyle kaliteyi<br>ayağınıza taşıyoruz.</p>
+            </div>
+            <div style="position:absolute;right:80px;top:50%;transform:translateY(-50%);border-left:1px solid rgba(200,168,75,0.2);padding-left:40px;z-index:2;">
+                <div style="padding:20px 0;border-bottom:1px solid rgba(255,255,255,0.05);">
+                    <div style="font-family:'Playfair Display',serif;font-size:48px;color:#c8a84b;font-weight:700;line-height:1;">20+</div>
+                    <div style="font-size:11px;color:rgba(255,255,255,0.3);letter-spacing:2px;text-transform:uppercase;margin-top:4px;">Yıl Deneyim</div>
+                </div>
+                <div style="padding:20px 0;">
+                    <div style="font-family:'Playfair Display',serif;font-size:48px;color:#c8a84b;font-weight:700;line-height:1;">2</div>
+                    <div style="font-size:11px;color:rgba(255,255,255,0.3);letter-spacing:2px;text-transform:uppercase;margin-top:4px;">Yıl Garanti</div>
                 </div>
             </div>
-            <div style="height:1px;background:rgba(200,168,75,0.08);margin:0 clamp(20px,6vw,80px);"></div>
+            <div style="position:absolute;bottom:65px;left:50%;transform:translateX(-50%);font-size:15px;letter-spacing:2px;white-space:nowrap;z-index:10;color:rgba(255,255,255,0.25);">#ofisinikaderebırak</div>
         </div>
 
     <div class="arrow left" onclick="prevSlide()">‹</div>
