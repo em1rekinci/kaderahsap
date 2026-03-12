@@ -29,3 +29,10 @@ def projects(request: Request):
         "projeler.html",
         {"request": request}
     )
+
+@app.get("/iletisim")
+def iletisim(request: Request):
+    return templates.TemplateResponse(
+        "iletisim.html",
+        {"request": request}
+    )
