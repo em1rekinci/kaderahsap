@@ -20,7 +20,7 @@ def product_detail(request: Request, product_id: int):
     product = next((p for p in products if p["id"] == product_id), None)
     return templates.TemplateResponse(
         "product.html",
-        {"request": request, "product": product}
+        {"request": request, "product": product, "products": products}
     )
 
 @app.get("/projeler")
