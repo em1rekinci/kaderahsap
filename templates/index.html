@@ -6,51 +6,54 @@
 /* ── MOBİL SLIDER OPTİMİZASYONU ── */
 @media (max-width: 768px) {
 
-  /* Slide: dikey akış, overflow gizle */
   .info-slide {
     flex-direction: column !important;
     justify-content: center !important;
     align-items: flex-start !important;
-    padding: 80px 0 60px !important;
-    box-sizing: border-box !important;
+    padding: 80px 0 48px !important;
     overflow: hidden !important;
+    gap: 0 !important;
   }
 
-  /* Metin bloğu: 80px padding → 24px */
-  .info-slide > div[style*="padding:0 80px"] {
+  /* Metin bloğu */
+  .is-text {
     padding: 0 24px !important;
     max-width: 100% !important;
+    position: relative !important;
+    z-index: 2 !important;
   }
 
-  /* Sağdaki stat/rozet bloğu: absolute → relative, metin altına */
-  .info-slide > div[style*="position:absolute;right:80px"],
-  .info-slide > div[style*="right:80px;top:50%"],
-  .info-slide > div[style*="right:80px"][style*="border-left"] {
+  /* Sağdaki stat / rozet bloğu: absolute'dan çıkar, altına al */
+  .is-stat {
     position: relative !important;
     right: auto !important;
     top: auto !important;
     transform: none !important;
-    margin: 24px 0 0 24px !important;
+    margin: 20px 0 0 24px !important;
+    border-left: none !important;
+    padding-left: 0 !important;
+    z-index: 2 !important;
   }
 
-  /* Dekoratif arka plan yazıları: taşmayı önle */
-  .info-slide > div[style*="font-size:280px"],
-  .info-slide > div[style*="font-size:320px"] {
-    font-size: 120px !important;
+  /* Dekoratif arka plan yazısı: küçült, taşmayı engelle */
+  .is-bg-text {
+    font-size: 100px !important;
+    white-space: normal !important;
+    overflow: hidden !important;
+    width: 100% !important;
   }
 
-  /* Sağ kenar çizgisi: gizle */
-  .info-slide > div[style*="width:3px"] {
-    display: none !important;
-  }
+  /* Kenar çizgisi: gizle */
+  .is-border { display: none !important; }
 
-  /* Hashtag: ortalanmış şekilde alt kısımda */
-  .info-slide > div[style*="bottom:65px"] {
+  /* Hashtag */
+  .is-hashtag {
     position: absolute !important;
-    bottom: 16px !important;
+    bottom: 12px !important;
     left: 50% !important;
     transform: translateX(-50%) !important;
-    font-size: 11px !important;
+    font-size: 10px !important;
+    white-space: nowrap !important;
   }
 }
 </style>
@@ -58,17 +61,16 @@
 <section class="slider">
     <div class="slides">
 
-
         <!-- BİLGİ SLIDE 1: Teslimat -->
         <div class="slide info-slide" style="background:#0e0e0e;display:flex;align-items:center;position:relative;overflow:hidden;padding-top:67px;">
-            <div style="position:absolute;right:-20px;top:50%;transform:translateY(-50%);font-family:'Playfair Display',serif;font-size:280px;font-weight:700;color:rgba(255,255,255,0.025);line-height:1;user-select:none;white-space:nowrap;pointer-events:none;">TESLİMAT</div>
-            <div style="position:relative;z-index:2;padding:0 80px;max-width:700px;">
+            <div class="is-bg-text" style="position:absolute;right:-20px;top:50%;transform:translateY(-50%);font-family:'Playfair Display',serif;font-size:280px;font-weight:700;color:rgba(255,255,255,0.025);line-height:1;user-select:none;white-space:nowrap;pointer-events:none;">TESLİMAT</div>
+            <div class="is-text" style="position:relative;z-index:2;padding:0 80px;max-width:700px;">
                 <div style="display:inline-flex;align-items:center;gap:10px;color:#c8a84b;font-size:12px;letter-spacing:4px;text-transform:uppercase;margin-bottom:28px;">
                     <span style="display:block;width:40px;height:1px;background:#c8a84b;"></span>Teslimat
                 </div>
                 <h2 style="font-family:'Playfair Display',serif;font-size:clamp(36px,5vw,68px);color:#fff;line-height:1.1;font-weight:700;margin-bottom:24px;">Tüm Türkiye'ye<br><em style="color:#c8a84b;font-style:italic;">Hızlı ve Güvenli</em><br>Teslimat</h2>
             </div>
-            <div style="position:absolute;right:80px;top:50%;transform:translateY(-50%);z-index:10;">
+            <div class="is-stat" style="position:absolute;right:80px;top:50%;transform:translateY(-50%);z-index:10;">
                 <svg width="130" height="130" viewBox="0 0 130 130" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="65" cy="65" r="62" stroke="#c8a84b" stroke-width="1.5" stroke-dasharray="4 3"/>
                     <circle cx="65" cy="65" r="52" stroke="#c8a84b" stroke-width="1"/>
@@ -79,21 +81,21 @@
                     <text x="65" y="28" text-anchor="middle" font-size="8" fill="#c8a84b" letter-spacing="6">✦ ✦ ✦</text>
                 </svg>
             </div>
-            <div style="position:absolute;right:0;top:0;bottom:0;width:3px;background:linear-gradient(to bottom,transparent,#c8a84b 30%,#c8a84b 70%,transparent);opacity:0.3;"></div>
-            <div style="position:absolute;bottom:65px;left:50%;transform:translateX(-50%);font-size:15px;letter-spacing:2px;white-space:nowrap;z-index:10;color:rgba(255,255,255,0.3);">#ofisinikaderebırak</div>
+            <div class="is-border" style="position:absolute;right:0;top:0;bottom:0;width:3px;background:linear-gradient(to bottom,transparent,#c8a84b 30%,#c8a84b 70%,transparent);opacity:0.3;"></div>
+            <div class="is-hashtag" style="position:absolute;bottom:65px;left:50%;transform:translateX(-50%);font-size:15px;letter-spacing:2px;white-space:nowrap;z-index:10;color:rgba(255,255,255,0.3);">#ofisinikaderebırak</div>
         </div>
 
         <!-- BİLGİ SLIDE 2: Özel Üretim -->
         <div class="slide info-slide" style="background:#f5f0e8;display:flex;align-items:center;position:relative;overflow:hidden;padding-top:67px;">
-            <div style="position:absolute;left:-10px;top:50%;transform:translateY(-50%);font-family:'Playfair Display',serif;font-size:320px;font-weight:700;color:rgba(184,146,42,0.07);line-height:1;user-select:none;pointer-events:none;">02</div>
-            <div style="position:relative;z-index:2;padding:0 80px;">
+            <div class="is-bg-text" style="position:absolute;left:-10px;top:50%;transform:translateY(-50%);font-family:'Playfair Display',serif;font-size:320px;font-weight:700;color:rgba(184,146,42,0.07);line-height:1;user-select:none;pointer-events:none;">02</div>
+            <div class="is-text" style="position:relative;z-index:2;padding:0 80px;">
                 <div style="display:inline-flex;align-items:center;gap:10px;color:#b8922a;font-size:12px;letter-spacing:4px;text-transform:uppercase;margin-bottom:28px;">
                     <span style="display:block;width:40px;height:1px;background:#b8922a;"></span>Özel Üretim
                 </div>
                 <h2 style="font-family:'Playfair Display',serif;font-size:clamp(36px,5vw,68px);color:#1a1a1a;line-height:1.1;font-weight:700;margin-bottom:24px;">Her Mekâna<br><em style="color:#b8922a;font-style:italic;">Özel Tasarım</em><br>Mobilya</h2>
                 <p style="color:#5c5448;font-size:16px;line-height:1.8;font-weight:300;">Fabrikadan direkt, aracısız fiyat.<br>Ölçülerinize göre üretiyoruz.</p>
             </div>
-            <div style="position:absolute;right:80px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:0;z-index:2;">
+            <div class="is-stat" style="position:absolute;right:80px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:0;z-index:2;">
                 <div style="padding:20px 0 20px 40px;border-left:1px solid rgba(184,146,42,0.2);border-bottom:1px solid rgba(0,0,0,0.06);display:flex;align-items:center;gap:14px;">
                     <div style="font-family:'Playfair Display',serif;font-size:42px;color:#b8922a;font-weight:700;line-height:1;">100%</div>
                     <div style="font-size:12px;color:#5c5448;letter-spacing:1px;text-transform:uppercase;line-height:1.4;">Yerli<br>Üretim</div>
@@ -103,20 +105,20 @@
                     <div style="font-size:12px;color:#5c5448;letter-spacing:1px;text-transform:uppercase;line-height:1.4;">Aracı<br>Maliyet</div>
                 </div>
             </div>
-            <div style="position:absolute;bottom:65px;left:50%;transform:translateX(-50%);font-size:15px;letter-spacing:2px;white-space:nowrap;z-index:10;color:rgba(184,146,42,0.45);">#ofisinikaderebırak</div>
+            <div class="is-hashtag" style="position:absolute;bottom:65px;left:50%;transform:translateX(-50%);font-size:15px;letter-spacing:2px;white-space:nowrap;z-index:10;color:rgba(184,146,42,0.45);">#ofisinikaderebırak</div>
         </div>
 
         <!-- BİLGİ SLIDE 3: Kalite -->
         <div class="slide info-slide" style="background:#12100e;display:flex;align-items:center;position:relative;overflow:hidden;padding-top:67px;">
             <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 80% 50%,rgba(200,168,75,0.06) 0%,transparent 70%);pointer-events:none;"></div>
-            <div style="position:relative;z-index:2;padding:0 80px;">
+            <div class="is-text" style="position:relative;z-index:2;padding:0 80px;">
                 <div style="display:inline-flex;align-items:center;gap:10px;color:#c8a84b;font-size:12px;letter-spacing:4px;text-transform:uppercase;margin-bottom:28px;">
                     <span style="display:block;width:40px;height:1px;background:#c8a84b;"></span>Kalite
                 </div>
                 <h2 style="font-family:'Playfair Display',serif;font-size:clamp(36px,5vw,68px);color:#fff;line-height:1.1;font-weight:700;margin-bottom:24px;"><em style="color:#c8a84b;font-style:italic;">Ömür Boyu</em><br>Dayanıklılık</h2>
                 <p style="color:rgba(255,255,255,0.4);font-size:15px;line-height:1.8;font-weight:300;max-width:400px;">Yılların tecrübesiyle kaliteyi<br>ayağınıza taşıyoruz.</p>
             </div>
-            <div style="position:absolute;right:80px;top:50%;transform:translateY(-50%);border-left:1px solid rgba(200,168,75,0.2);padding-left:40px;z-index:2;">
+            <div class="is-stat" style="position:absolute;right:80px;top:50%;transform:translateY(-50%);border-left:1px solid rgba(200,168,75,0.2);padding-left:40px;z-index:2;">
                 <div style="padding:20px 0;border-bottom:1px solid rgba(255,255,255,0.05);">
                     <div style="font-family:'Playfair Display',serif;font-size:48px;color:#c8a84b;font-weight:700;line-height:1;">20+</div>
                     <div style="font-size:11px;color:rgba(255,255,255,0.3);letter-spacing:2px;text-transform:uppercase;margin-top:4px;">Yıl Deneyim</div>
@@ -126,7 +128,7 @@
                     <div style="font-size:11px;color:rgba(255,255,255,0.3);letter-spacing:2px;text-transform:uppercase;margin-top:4px;">Yıl Garanti</div>
                 </div>
             </div>
-            <div style="position:absolute;bottom:65px;left:50%;transform:translateX(-50%);font-size:15px;letter-spacing:2px;white-space:nowrap;z-index:10;color:rgba(255,255,255,0.25);">#ofisinikaderebırak</div>
+            <div class="is-hashtag" style="position:absolute;bottom:65px;left:50%;transform:translateX(-50%);font-size:15px;letter-spacing:2px;white-space:nowrap;z-index:10;color:rgba(255,255,255,0.25);">#ofisinikaderebırak</div>
         </div>
 
     <div class="arrow left" onclick="prevSlide()">‹</div>
