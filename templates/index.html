@@ -3,275 +3,317 @@
 {% block content %}
 
 <style>
-/* ── MOBİL SLIDER OPTİMİZASYONU ── */
+/* ===== SLIDER DESKTOP ===== */
+.info-slide {
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding-top: 67px;
+}
+
+/* Dekoratif arka plan yazısı */
+.is-bg {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  line-height: 1;
+  user-select: none;
+  pointer-events: none;
+  font-size: 280px;
+  white-space: nowrap;
+}
+
+/* Metin bloğu */
+.is-text {
+  position: relative;
+  z-index: 2;
+  padding: 0 80px;
+  max-width: 700px;
+}
+
+/* Sağ stat/rozet bloğu */
+.is-stat {
+  position: absolute;
+  right: 80px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+
+/* Sağ kenar çizgisi */
+.is-line {
+  position: absolute;
+  right: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: linear-gradient(to bottom, transparent, #c8a84b 30%, #c8a84b 70%, transparent);
+  opacity: 0.3;
+}
+
+/* Hashtag */
+.is-tag {
+  position: absolute;
+  bottom: 65px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 15px;
+  letter-spacing: 2px;
+  white-space: nowrap;
+  z-index: 10;
+}
+
+/* Slide 2 stat: dikey */
+.is-stat-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.is-stat-row {
+  padding: 20px 0 20px 40px;
+  border-left: 1px solid rgba(184,146,42,0.2);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.is-stat-row + .is-stat-row {
+  border-bottom: none;
+}
+
+/* Slide 3 stat: dikey liste */
+.is-stat-list {
+  border-left: 1px solid rgba(200,168,75,0.2);
+  padding-left: 40px;
+}
+.is-stat-list-item {
+  padding: 20px 0;
+}
+.is-stat-list-item + .is-stat-list-item {
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+/* ===== MOBİL ===== */
 @media (max-width: 768px) {
 
   .info-slide {
     flex-direction: column !important;
-    justify-content: center !important;
     align-items: flex-start !important;
-    padding: 80px 0 48px !important;
-    overflow: hidden !important;
+    justify-content: center !important;
+    padding: 80px 0 50px !important;
     gap: 0 !important;
   }
 
-  /* Metin bloğu */
+  .is-bg {
+    font-size: 90px !important;
+    top: auto !important;
+    bottom: 40px !important;
+    transform: none !important;
+    opacity: 0.04 !important;
+  }
+
   .is-text {
     padding: 0 24px !important;
     max-width: 100% !important;
-    position: relative !important;
-    z-index: 2 !important;
   }
 
-  /* Sağdaki stat / rozet bloğu: absolute'dan çıkar, altına al */
   .is-stat {
     position: relative !important;
     right: auto !important;
     top: auto !important;
     transform: none !important;
     margin: 20px 0 0 24px !important;
+  }
+
+  .is-stat-list {
     border-left: none !important;
     padding-left: 0 !important;
-    z-index: 2 !important;
+    display: flex !important;
+    gap: 24px !important;
   }
 
-  /* Dekoratif arka plan yazısı: küçült, taşmayı engelle */
-  .is-bg-text {
-    font-size: 100px !important;
-    white-space: normal !important;
-    overflow: hidden !important;
-    width: 100% !important;
+  .is-stat-row {
+    padding: 12px 0 12px 16px !important;
+    border-left: 1px solid rgba(184,146,42,0.2) !important;
   }
 
-  /* Kenar çizgisi: gizle */
-  .is-border { display: none !important; }
+  .is-line { display: none !important; }
 
-  /* Hashtag */
-  .is-hashtag {
-    position: absolute !important;
-    bottom: 12px !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
+  .is-tag {
+    bottom: 10px !important;
     font-size: 10px !important;
-    white-space: nowrap !important;
   }
 }
 </style>
 
 <section class="slider">
-    <div class="slides">
+  <div class="slides">
 
-        <!-- BİLGİ SLIDE 1: Teslimat -->
-        <div class="slide info-slide" style="background:#0e0e0e;display:flex;align-items:center;position:relative;overflow:hidden;padding-top:67px;">
-            <div class="is-bg-text" style="position:absolute;font-family:'Playfair Display',serif;font-weight:700;color:rgba(255,255,255,0.025);line-height:1;user-select:none;white-space:nowrap;pointer-events:none;">TESLİMAT</div>
-            <div class="is-text" style="position:relative;z-index:2;">
-                <div style="display:inline-flex;align-items:center;gap:10px;color:#c8a84b;font-size:12px;letter-spacing:4px;text-transform:uppercase;margin-bottom:28px;">
-                    <span style="display:block;width:40px;height:1px;background:#c8a84b;"></span>Teslimat
-                </div>
-                <h2 style="font-family:'Playfair Display',serif;font-size:clamp(36px,5vw,68px);color:#fff;line-height:1.1;font-weight:700;margin-bottom:24px;">Tüm Türkiye'ye<br><em style="color:#c8a84b;font-style:italic;">Hızlı ve Güvenli</em><br>Teslimat</h2>
-            </div>
-            <div class="is-stat" style="z-index:10;">
-                <svg width="130" height="130" viewBox="0 0 130 130" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="65" cy="65" r="62" stroke="#c8a84b" stroke-width="1.5" stroke-dasharray="4 3"/>
-                    <circle cx="65" cy="65" r="52" stroke="#c8a84b" stroke-width="1"/>
-                    <text x="65" y="52" text-anchor="middle" font-family="Playfair Display,serif" font-size="36" font-weight="700" fill="#c8a84b">2</text>
-                    <line x1="42" y1="62" x2="88" y2="62" stroke="#c8a84b" stroke-width="0.8" opacity="0.5"/>
-                    <text x="65" y="76" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#c8a84b" letter-spacing="3" font-weight="500">YIL</text>
-                    <text x="65" y="91" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="rgba(200,168,75,0.6)" letter-spacing="3">GARANTİ</text>
-                    <text x="65" y="28" text-anchor="middle" font-size="8" fill="#c8a84b" letter-spacing="6">✦ ✦ ✦</text>
-                </svg>
-            </div>
-            <div class="is-border" style="position:absolute;right:0;top:0;bottom:0;width:3px;background:linear-gradient(to bottom,transparent,#c8a84b 30%,#c8a84b 70%,transparent);opacity:0.3;"></div>
-            <div class="is-hashtag" style="position:absolute;left:50%;transform:translateX(-50%);font-size:15px;letter-spacing:2px;white-space:nowrap;z-index:10;color:rgba(255,255,255,0.3);">#ofisinikaderebırak</div>
+    <!-- SLIDE 1: Teslimat -->
+    <div class="slide info-slide" style="background:#0e0e0e;">
+      <div class="is-bg" style="right:-20px; color:rgba(255,255,255,0.025);">TESLİMAT</div>
+      <div class="is-text">
+        <div style="display:inline-flex;align-items:center;gap:10px;color:#c8a84b;font-size:12px;letter-spacing:4px;text-transform:uppercase;margin-bottom:28px;">
+          <span style="display:block;width:40px;height:1px;background:#c8a84b;"></span>Teslimat
         </div>
+        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(36px,5vw,68px);color:#fff;line-height:1.1;font-weight:700;margin-bottom:24px;">
+          Tüm Türkiye'ye<br><em style="color:#c8a84b;font-style:italic;">Hızlı ve Güvenli</em><br>Teslimat
+        </h2>
+      </div>
+      <div class="is-stat">
+        <svg width="130" height="130" viewBox="0 0 130 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="65" cy="65" r="62" stroke="#c8a84b" stroke-width="1.5" stroke-dasharray="4 3"/>
+          <circle cx="65" cy="65" r="52" stroke="#c8a84b" stroke-width="1"/>
+          <text x="65" y="52" text-anchor="middle" font-family="Playfair Display,serif" font-size="36" font-weight="700" fill="#c8a84b">2</text>
+          <line x1="42" y1="62" x2="88" y2="62" stroke="#c8a84b" stroke-width="0.8" opacity="0.5"/>
+          <text x="65" y="76" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#c8a84b" letter-spacing="3" font-weight="500">YIL</text>
+          <text x="65" y="91" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="rgba(200,168,75,0.6)" letter-spacing="3">GARANTİ</text>
+          <text x="65" y="28" text-anchor="middle" font-size="8" fill="#c8a84b" letter-spacing="6">✦ ✦ ✦</text>
+        </svg>
+      </div>
+      <div class="is-line"></div>
+      <div class="is-tag" style="color:rgba(255,255,255,0.3);">#ofisinikaderebırak</div>
+    </div>
 
-        <!-- BİLGİ SLIDE 2: Özel Üretim -->
-        <div class="slide info-slide" style="background:#f5f0e8;display:flex;align-items:center;position:relative;overflow:hidden;padding-top:67px;">
-            <div class="is-bg-text" style="position:absolute;font-family:'Playfair Display',serif;font-weight:700;color:rgba(184,146,42,0.07);line-height:1;user-select:none;pointer-events:none;">02</div>
-            <div class="is-text" style="position:relative;z-index:2;">
-                <div style="display:inline-flex;align-items:center;gap:10px;color:#b8922a;font-size:12px;letter-spacing:4px;text-transform:uppercase;margin-bottom:28px;">
-                    <span style="display:block;width:40px;height:1px;background:#b8922a;"></span>Özel Üretim
-                </div>
-                <h2 style="font-family:'Playfair Display',serif;font-size:clamp(36px,5vw,68px);color:#1a1a1a;line-height:1.1;font-weight:700;margin-bottom:24px;">Her Mekâna<br><em style="color:#b8922a;font-style:italic;">Özel Tasarım</em><br>Mobilya</h2>
-                <p style="color:#5c5448;font-size:16px;line-height:1.8;font-weight:300;">Fabrikadan direkt, aracısız fiyat.<br>Ölçülerinize göre üretiyoruz.</p>
-            </div>
-            <div class="is-stat" style="display:flex;flex-direction:column;gap:0;z-index:2;">
-                <div style="padding:20px 0 20px 40px;border-left:1px solid rgba(184,146,42,0.2);border-bottom:1px solid rgba(0,0,0,0.06);display:flex;align-items:center;gap:14px;">
-                    <div style="font-family:'Playfair Display',serif;font-size:42px;color:#b8922a;font-weight:700;line-height:1;">100%</div>
-                    <div style="font-size:12px;color:#5c5448;letter-spacing:1px;text-transform:uppercase;line-height:1.4;">Yerli<br>Üretim</div>
-                </div>
-                <div style="padding:20px 0 20px 40px;border-left:1px solid rgba(184,146,42,0.2);display:flex;align-items:center;gap:14px;">
-                    <div style="font-family:'Playfair Display',serif;font-size:42px;color:#b8922a;font-weight:700;line-height:1;">0</div>
-                    <div style="font-size:12px;color:#5c5448;letter-spacing:1px;text-transform:uppercase;line-height:1.4;">Aracı<br>Maliyet</div>
-                </div>
-            </div>
-            <div class="is-hashtag" style="position:absolute;left:50%;transform:translateX(-50%);font-size:15px;letter-spacing:2px;white-space:nowrap;z-index:10;color:rgba(184,146,42,0.45);">#ofisinikaderebırak</div>
+    <!-- SLIDE 2: Özel Üretim -->
+    <div class="slide info-slide" style="background:#f5f0e8;">
+      <div class="is-bg" style="left:-10px; font-size:320px; color:rgba(184,146,42,0.07);">02</div>
+      <div class="is-text">
+        <div style="display:inline-flex;align-items:center;gap:10px;color:#b8922a;font-size:12px;letter-spacing:4px;text-transform:uppercase;margin-bottom:28px;">
+          <span style="display:block;width:40px;height:1px;background:#b8922a;"></span>Özel Üretim
         </div>
-
-        <!-- BİLGİ SLIDE 3: Kalite -->
-        <div class="slide info-slide" style="background:#12100e;display:flex;align-items:center;position:relative;overflow:hidden;padding-top:67px;">
-            <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 80% 50%,rgba(200,168,75,0.06) 0%,transparent 70%);pointer-events:none;"></div>
-            <div class="is-text" style="position:relative;z-index:2;">
-                <div style="display:inline-flex;align-items:center;gap:10px;color:#c8a84b;font-size:12px;letter-spacing:4px;text-transform:uppercase;margin-bottom:28px;">
-                    <span style="display:block;width:40px;height:1px;background:#c8a84b;"></span>Kalite
-                </div>
-                <h2 style="font-family:'Playfair Display',serif;font-size:clamp(36px,5vw,68px);color:#fff;line-height:1.1;font-weight:700;margin-bottom:24px;"><em style="color:#c8a84b;font-style:italic;">Ömür Boyu</em><br>Dayanıklılık</h2>
-                <p style="color:rgba(255,255,255,0.4);font-size:15px;line-height:1.8;font-weight:300;max-width:400px;">Yılların tecrübesiyle kaliteyi<br>ayağınıza taşıyoruz.</p>
-            </div>
-            <div class="is-stat" style="z-index:2;">
-                <div style="padding:20px 0;border-bottom:1px solid rgba(255,255,255,0.05);">
-                    <div style="font-family:'Playfair Display',serif;font-size:48px;color:#c8a84b;font-weight:700;line-height:1;">20+</div>
-                    <div style="font-size:11px;color:rgba(255,255,255,0.3);letter-spacing:2px;text-transform:uppercase;margin-top:4px;">Yıl Deneyim</div>
-                </div>
-                <div style="padding:20px 0;">
-                    <div style="font-family:'Playfair Display',serif;font-size:48px;color:#c8a84b;font-weight:700;line-height:1;">2</div>
-                    <div style="font-size:11px;color:rgba(255,255,255,0.3);letter-spacing:2px;text-transform:uppercase;margin-top:4px;">Yıl Garanti</div>
-                </div>
-            </div>
-            <div class="is-hashtag" style="position:absolute;left:50%;transform:translateX(-50%);font-size:15px;letter-spacing:2px;white-space:nowrap;z-index:10;color:rgba(255,255,255,0.25);">#ofisinikaderebırak</div>
+        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(36px,5vw,68px);color:#1a1a1a;line-height:1.1;font-weight:700;margin-bottom:24px;">
+          Her Mekâna<br><em style="color:#b8922a;font-style:italic;">Özel Tasarım</em><br>Mobilya
+        </h2>
+        <p style="color:#5c5448;font-size:16px;line-height:1.8;font-weight:300;">Fabrikadan direkt, aracısız fiyat.<br>Ölçülerinize göre üretiyoruz.</p>
+      </div>
+      <div class="is-stat">
+        <div class="is-stat-col">
+          <div class="is-stat-row" style="border-bottom:1px solid rgba(0,0,0,0.06);">
+            <div style="font-family:'Playfair Display',serif;font-size:42px;color:#b8922a;font-weight:700;line-height:1;">100%</div>
+            <div style="font-size:12px;color:#5c5448;letter-spacing:1px;text-transform:uppercase;line-height:1.4;">Yerli<br>Üretim</div>
+          </div>
+          <div class="is-stat-row">
+            <div style="font-family:'Playfair Display',serif;font-size:42px;color:#b8922a;font-weight:700;line-height:1;">0</div>
+            <div style="font-size:12px;color:#5c5448;letter-spacing:1px;text-transform:uppercase;line-height:1.4;">Aracı<br>Maliyet</div>
+          </div>
         </div>
+      </div>
+      <div class="is-tag" style="color:rgba(184,146,42,0.45);">#ofisinikaderebırak</div>
+    </div>
 
-    <div class="arrow left" onclick="prevSlide()">‹</div>
-    <div class="arrow right" onclick="nextSlide()">›</div>
+    <!-- SLIDE 3: Kalite -->
+    <div class="slide info-slide" style="background:#12100e;">
+      <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 80% 50%,rgba(200,168,75,0.06) 0%,transparent 70%);pointer-events:none;"></div>
+      <div class="is-text">
+        <div style="display:inline-flex;align-items:center;gap:10px;color:#c8a84b;font-size:12px;letter-spacing:4px;text-transform:uppercase;margin-bottom:28px;">
+          <span style="display:block;width:40px;height:1px;background:#c8a84b;"></span>Kalite
+        </div>
+        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(36px,5vw,68px);color:#fff;line-height:1.1;font-weight:700;margin-bottom:24px;">
+          <em style="color:#c8a84b;font-style:italic;">Ömür Boyu</em><br>Dayanıklılık
+        </h2>
+        <p style="color:rgba(255,255,255,0.4);font-size:15px;line-height:1.8;font-weight:300;max-width:400px;">Yılların tecrübesiyle kaliteyi<br>ayağınıza taşıyoruz.</p>
+      </div>
+      <div class="is-stat">
+        <div class="is-stat-list">
+          <div class="is-stat-list-item">
+            <div style="font-family:'Playfair Display',serif;font-size:48px;color:#c8a84b;font-weight:700;line-height:1;">20+</div>
+            <div style="font-size:11px;color:rgba(255,255,255,0.3);letter-spacing:2px;text-transform:uppercase;margin-top:4px;">Yıl Deneyim</div>
+          </div>
+          <div class="is-stat-list-item">
+            <div style="font-family:'Playfair Display',serif;font-size:48px;color:#c8a84b;font-weight:700;line-height:1;">2</div>
+            <div style="font-size:11px;color:rgba(255,255,255,0.3);letter-spacing:2px;text-transform:uppercase;margin-top:4px;">Yıl Garanti</div>
+          </div>
+        </div>
+      </div>
+      <div class="is-tag" style="color:rgba(255,255,255,0.25);">#ofisinikaderebırak</div>
+    </div>
 
-    <div class="dots"></div>
+  </div>
+
+  <div class="arrow left" onclick="prevSlide()">‹</div>
+  <div class="arrow right" onclick="nextSlide()">›</div>
+  <div class="dots"></div>
 </section>
 
 <!-- KATEGORİ SLIDER -->
 <section class="category-slider">
-    <div class="category-container">
-        <div class="category-track">
-            <div class="category-item">
-                <div class="category-circle">
-                    <img src="/static/images/cilali-masa.jpg" alt="Cilalı Masa Takımı">
-                </div>
-                <p>Cilalı Masa Takımı</p>
-            </div>
-            <div class="category-item">
-                <div class="category-circle">
-                    <img src="/static/images/makam-takimi.jpg" alt="Makam Takımı">
-                </div>
-                <p>Makam Takımı</p>
-            </div>
-            <div class="category-item">
-                <div class="category-circle">
-                    <img src="/static/images/yonetici-takimi.jpg" alt="Yönetici Takımı">
-                </div>
-                <p>Yönetici Takımı</p>
-            </div>
-            <div class="category-item">
-                <div class="category-circle">
-                    <img src="/static/images/personel-takimi.jpg" alt="Personel Takımı">
-                </div>
-                <p>Personel Takımı</p>
-            </div>
-            <div class="category-item">
-                <div class="category-circle">
-                    <img src="/static/images/toplanti-masasi.jpg" alt="Toplantı Masası">
-                </div>
-                <p>Toplantı Masası</p>
-            </div>
-            <div class="category-item">
-                <div class="category-circle">
-                    <img src="/static/images/keson.jpg" alt="Keson">
-                </div>
-                <p>Keson</p>
-            </div>
-            <div class="category-item">
-                <div class="category-circle">
-                    <img src="/static/images/dolap.jpg" alt="Dolap">
-                </div>
-                <p>Dolap</p>
-            </div>
-            <div class="category-item">
-                <div class="category-circle">
-                    <img src="/static/images/banko.jpg" alt="Banko">
-                </div>
-                <p>Banko</p>
-            </div>
-        </div>
+  <div class="category-container">
+    <div class="category-track">
+      <div class="category-item"><div class="category-circle"><img src="/static/images/cilali-masa.jpg" alt="Cilalı Masa Takımı"></div><p>Cilalı Masa Takımı</p></div>
+      <div class="category-item"><div class="category-circle"><img src="/static/images/makam-takimi.jpg" alt="Makam Takımı"></div><p>Makam Takımı</p></div>
+      <div class="category-item"><div class="category-circle"><img src="/static/images/yonetici-takimi.jpg" alt="Yönetici Takımı"></div><p>Yönetici Takımı</p></div>
+      <div class="category-item"><div class="category-circle"><img src="/static/images/personel-takimi.jpg" alt="Personel Takımı"></div><p>Personel Takımı</p></div>
+      <div class="category-item"><div class="category-circle"><img src="/static/images/toplanti-masasi.jpg" alt="Toplantı Masası"></div><p>Toplantı Masası</p></div>
+      <div class="category-item"><div class="category-circle"><img src="/static/images/keson.jpg" alt="Keson"></div><p>Keson</p></div>
+      <div class="category-item"><div class="category-circle"><img src="/static/images/dolap.jpg" alt="Dolap"></div><p>Dolap</p></div>
+      <div class="category-item"><div class="category-circle"><img src="/static/images/banko.jpg" alt="Banko"></div><p>Banko</p></div>
     </div>
-    <div class="category-dots"></div>
+  </div>
+  <div class="category-dots"></div>
 </section>
 
 <section class="products">
-    {% for product in products %}
-    <a href="/product/{{ product.id }}" class="product-card">
-        <img src="{{ product.images[0] }}">
-        <h3>{{ product.name }}</h3>
-    </a>
-    {% endfor %}
+  {% for product in products %}
+  <a href="/product/{{ product.id }}" class="product-card">
+    <img src="{{ product.images[0] }}">
+    <h3>{{ product.name }}</h3>
+  </a>
+  {% endfor %}
 </section>
 
-<!-- REFERANSLARIMIZ -->
 <section class="references">
-    <h2>Referanslarımız</h2>
-    <div class="references-container">
-        <div class="reference-item">
-            <img src="/static/images/saglik-bakanligi.png" alt="T.C. Sağlık Bakanlığı">
-        </div>
-        <div class="reference-item">
-            <img src="/static/images/milli-egitim.png" alt="T.C. Milli Eğitim Bakanlığı">
-        </div>
-        <div class="reference-item">
-            <img src="/static/images/kultur-turizm.png" alt="T.C. Kültür ve Turizm Bakanlığı">
-        </div>
-        <div class="reference-item">
-            <img src="/static/images/icisleri.png" alt="T.C. İçişleri Bakanlığı">
-        </div>
-    </div>
-    <div class="references-dots"></div>
+  <h2>Referanslarımız</h2>
+  <div class="references-container">
+    <div class="reference-item"><img src="/static/images/saglik-bakanligi.png" alt="T.C. Sağlık Bakanlığı"></div>
+    <div class="reference-item"><img src="/static/images/milli-egitim.png" alt="T.C. Milli Eğitim Bakanlığı"></div>
+    <div class="reference-item"><img src="/static/images/kultur-turizm.png" alt="T.C. Kültür ve Turizm Bakanlığı"></div>
+    <div class="reference-item"><img src="/static/images/icisleri.png" alt="T.C. İçişleri Bakanlığı"></div>
+  </div>
+  <div class="references-dots"></div>
 </section>
 
 <footer class="footer">
-    <div class="footer-container">
-
-        <div class="footer-left">
-            <h3>KADER AHŞAP MOBİLYA</h3>
-            <p>
-                Kader Ahşap Mobilya olarak özel üretim,
-                kaliteli ve uzun ömürlü mobilyalar üretiyoruz.
-            </p>
-        </div>
-
-        <div class="footer-center">
-            <h4>Ürünler</h4>
-            <ul>
-                <li><a href="/products?vip_masa">Makam Masaları</a></li>
-                <li><a href="/products?ahsap_masa">Toplantı Masaları</a></li>
-                <li><a href="/products?dolap">Özel Üretim Dolap</a></li>
-                <li><a href="/products?ofis">Ofis Mobilyaları</a></li>
-            </ul>
-        </div>
-
-        <div class="footer-right">
-            <div class="footer-contact">
-                <p>İstanbul / Türkiye</p>
-                <p>📞 +90 544 491 86 17</p>
-                <p>✉ info@kaderahsap.com</p>
-            </div>
-
-            <div class="footer-social">
-                <h4>Bizi Takip Edin</h4>
-                <div class="socials">
-                    <a href="#" class="facebook">f</a>
-                    <a href="#" class="instagram">
-                        <svg width="16" height="16" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect x="3" y="3" width="30" height="30" rx="8" stroke="white" stroke-width="2.2" fill="none"/>
-                            <circle cx="18" cy="18" r="7" stroke="white" stroke-width="2.2" fill="none"/>
-                            <circle cx="26.5" cy="9.5" r="1.8" fill="white"/>
-                        </svg>
-                    </a>
-                </div>
-            </div>
-        </div>
-
+  <div class="footer-container">
+    <div class="footer-left">
+      <h3>KADER AHŞAP MOBİLYA</h3>
+      <p>Kader Ahşap Mobilya olarak özel üretim, kaliteli ve uzun ömürlü mobilyalar üretiyoruz.</p>
     </div>
-
-    <div class="footer-bottom" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
-        <span>© 2026 Kader Ahşap Mobilya — Tüm Hakları Saklıdır</span>
-        <span>Tasarım &amp; Geliştirme: <a href="https://www.vionasoft.com" target="_blank" style="color:inherit;text-decoration:none;font-weight:600;">Vionasoft</a></span>
+    <div class="footer-center">
+      <h4>Ürünler</h4>
+      <ul>
+        <li><a href="/products?vip_masa">Makam Masaları</a></li>
+        <li><a href="/products?ahsap_masa">Toplantı Masaları</a></li>
+        <li><a href="/products?dolap">Özel Üretim Dolap</a></li>
+        <li><a href="/products?ofis">Ofis Mobilyaları</a></li>
+      </ul>
     </div>
+    <div class="footer-right">
+      <div class="footer-contact">
+        <p>İstanbul / Türkiye</p>
+        <p>📞 +90 544 491 86 17</p>
+        <p>✉ info@kaderahsap.com</p>
+      </div>
+      <div class="footer-social">
+        <h4>Bizi Takip Edin</h4>
+        <div class="socials">
+          <a href="#" class="facebook">f</a>
+          <a href="#" class="instagram">
+            <svg width="16" height="16" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="3" width="30" height="30" rx="8" stroke="white" stroke-width="2.2" fill="none"/>
+              <circle cx="18" cy="18" r="7" stroke="white" stroke-width="2.2" fill="none"/>
+              <circle cx="26.5" cy="9.5" r="1.8" fill="white"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
+    <span>© 2026 Kader Ahşap Mobilya — Tüm Hakları Saklıdır</span>
+    <span>Tasarım &amp; Geliştirme: <a href="https://www.vionasoft.com" target="_blank" style="color:inherit;text-decoration:none;font-weight:600;">Vionasoft</a></span>
+  </div>
 </footer>
 
 <script src="/static/js/slider.js"></script>
