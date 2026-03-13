@@ -3,219 +3,54 @@
 {% block content %}
 
 <style>
-/* ── MOBİL SLIDER OPTİMİZASYONU (Tam Yeniden Yazım) ── */
-
-/* === GENEL SLIDER === */
+/* ── MOBİL SLIDER OPTİMİZASYONU ── */
 @media (max-width: 768px) {
 
-  /* Ana slide wrapper */
-  .slider {
-    height: 100svh !important;
-    min-height: 480px !important;
-  }
-
-  .slides {
-    height: 100% !important;
-  }
-
-  /* Her slide: dikey akış, güvenli padding */
+  /* Slide: dikey akış, overflow gizle */
   .info-slide {
     flex-direction: column !important;
-    justify-content: flex-start !important;
-    align-items: stretch !important;
-    padding: 72px 0 56px !important;
-    min-height: 100% !important;
-    height: 100% !important;
+    justify-content: center !important;
+    align-items: flex-start !important;
+    padding: 80px 0 60px !important;
     box-sizing: border-box !important;
     overflow: hidden !important;
-    gap: 0 !important;
   }
 
-  /* Dekoratif büyük arka plan yazıları - küçült ve yeniden konumlandır */
-  .info-slide > div[style*="font-size:280px"],
-  .info-slide > div[style*="font-size:320px"] {
-    font-size: 110px !important;
-    top: auto !important;
-    bottom: 50px !important;
-    transform: none !important;
-    right: -10px !important;
-    left: auto !important;
-    opacity: 0.04 !important;
-    line-height: 1 !important;
-  }
-
-  /* === METİN BLOĞU === */
+  /* Metin bloğu: 80px padding → 24px */
   .info-slide > div[style*="padding:0 80px"] {
-    padding: 24px 24px 0 24px !important;
-    max-width: 100% !important;
-    position: relative !important;
-    z-index: 2 !important;
-    flex: 0 0 auto !important;
-  }
-
-  /* Label (Teslimat / Özel Üretim / Kalite) */
-  .info-slide > div[style*="padding:0 80px"] > div:first-child {
-    margin-bottom: 16px !important;
-    font-size: 11px !important;
-    letter-spacing: 3px !important;
-  }
-
-  /* Başlıklar */
-  .info-slide h2 {
-    font-size: clamp(28px, 8.5vw, 42px) !important;
-    line-height: 1.15 !important;
-    margin-bottom: 16px !important;
-  }
-
-  /* Paragraf */
-  .info-slide p {
-    font-size: 13px !important;
-    line-height: 1.7 !important;
-    margin-bottom: 0 !important;
-  }
-
-  /* === SAĞ STAT / ROZET BLOĞU ===
-     Absolute konumdan çıkar, metin bloğunun altına ekle */
-  .info-slide > div[style*="position:absolute;right:80px"] {
-    position: relative !important;
-    right: auto !important;
-    top: auto !important;
-    transform: none !important;
-    flex: 0 0 auto !important;
-    margin: 20px 0 0 0 !important;
     padding: 0 24px !important;
-    z-index: 2 !important;
-    display: flex !important;
-    flex-direction: row !important;
-    gap: 0 !important;
+    max-width: 100% !important;
   }
 
-  /* Stat kutucukları: yatay dizilim */
-  .info-slide > div[style*="position:absolute;right:80px"] > div {
-    padding: 14px 20px 14px 20px !important;
-    flex: 1 !important;
-    border-left: none !important;
-    border-top: 1px solid rgba(200,168,75,0.2) !important;
-    border-bottom: none !important;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    gap: 4px !important;
-  }
-
-  /* Stat büyük rakam/yüzde */
-  .info-slide > div[style*="position:absolute;right:80px"] [style*="font-size:42px"],
-  .info-slide > div[style*="position:absolute;right:80px"] [style*="font-size:48px"] {
-    font-size: 30px !important;
-    line-height: 1 !important;
-  }
-
-  /* Stat alt etiket */
-  .info-slide > div[style*="position:absolute;right:80px"] [style*="font-size:12px"],
-  .info-slide > div[style*="position:absolute;right:80px"] [style*="font-size:11px"] {
-    font-size: 10px !important;
-    letter-spacing: 1.5px !important;
-  }
-
-  /* Slide 3: border-left'li stat bloğu */
+  /* Sağdaki stat/rozet bloğu: absolute → relative, metin altına */
+  .info-slide > div[style*="position:absolute;right:80px"],
+  .info-slide > div[style*="right:80px;top:50%"],
   .info-slide > div[style*="right:80px"][style*="border-left"] {
     position: relative !important;
     right: auto !important;
     top: auto !important;
     transform: none !important;
-    flex: 0 0 auto !important;
-    margin: 20px 0 0 0 !important;
-    padding: 0 24px !important;
-    border-left: none !important;
-    display: flex !important;
-    flex-direction: row !important;
-    gap: 0 !important;
-    z-index: 2 !important;
+    margin: 24px 0 0 24px !important;
   }
 
-  .info-slide > div[style*="right:80px"][style*="border-left"] > div {
-    padding: 14px 20px !important;
-    flex: 1 !important;
-    border-bottom: none !important;
+  /* Dekoratif arka plan yazıları: taşmayı önle */
+  .info-slide > div[style*="font-size:280px"],
+  .info-slide > div[style*="font-size:320px"] {
+    font-size: 120px !important;
   }
 
-  /* SVG garanti rozeti: slide 1 */
-  .info-slide > div[style*="position:absolute;right:80px"] svg[width="130"] {
-    width: 72px !important;
-    height: 72px !important;
-  }
-
-  /* Slide 1: SVG tek başına bir blok — yatay ortala */
-  .info-slide > div[style*="position:absolute;right:80px"]:has(svg) {
-    align-items: center !important;
-    justify-content: center !important;
-  }
-
-  /* === SAĞ KENAR ÇİZGİSİ === gizle */
+  /* Sağ kenar çizgisi: gizle */
   .info-slide > div[style*="width:3px"] {
     display: none !important;
   }
 
-  /* === HASHTAG === */
+  /* Hashtag: ortalanmış şekilde alt kısımda */
   .info-slide > div[style*="bottom:65px"] {
-    position: relative !important;
-    bottom: auto !important;
-    left: auto !important;
-    transform: none !important;
-    text-align: center !important;
-    width: 100% !important;
-    padding: 12px 0 0 !important;
-    font-size: 10px !important;
-    letter-spacing: 2.5px !important;
-    flex: 1 !important;
-    display: flex !important;
-    align-items: flex-end !important;
-    justify-content: center !important;
-    z-index: 2 !important;
-  }
-
-  /* === OK BUTONLARI === */
-  .slider .arrow {
-    width: 36px !important;
-    height: 36px !important;
-    font-size: 20px !important;
-    line-height: 36px !important;
+    position: absolute !important;
     bottom: 16px !important;
-    top: auto !important;
-    transform: none !important;
-  }
-
-  .slider .arrow.left  { left: calc(50% - 56px) !important; }
-  .slider .arrow.right { right: calc(50% - 56px) !important; }
-
-  /* === DOTS === */
-  .slider .dots {
-    bottom: 54px !important;
-  }
-}
-
-/* === KÜÇÜK MOBİL (≤ 375px) === */
-@media (max-width: 375px) {
-  .info-slide {
-    padding: 64px 0 48px !important;
-  }
-
-  .info-slide h2 {
-    font-size: clamp(24px, 9vw, 32px) !important;
-  }
-
-  .info-slide > div[style*="padding:0 80px"] {
-    padding: 20px 18px 0 18px !important;
-  }
-
-  .info-slide > div[style*="position:absolute;right:80px"],
-  .info-slide > div[style*="right:80px"][style*="border-left"] {
-    padding: 0 18px !important;
-  }
-
-  .info-slide > div[style*="position:absolute;right:80px"] [style*="font-size:42px"],
-  .info-slide > div[style*="position:absolute;right:80px"] [style*="font-size:48px"] {
-    font-size: 26px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    font-size: 11px !important;
   }
 }
 </style>
