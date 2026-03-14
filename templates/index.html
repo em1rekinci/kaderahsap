@@ -256,10 +256,19 @@
       <svg class="footer-logo-svg" width="340" height="92" viewBox="0 0 340 92" xmlns="http://www.w3.org/2000/svg" style="display:block;margin-bottom:14px;">
         <text x="0" y="44" font-family="Arial Black,Impact,sans-serif" font-size="38" font-weight="900" fill="#1a1209" letter-spacing="1">KADER</text>
         <text x="0" y="78" font-family="Arial Black,Impact,sans-serif" font-size="38" font-weight="900" fill="#b8922a" letter-spacing="1">AHŞAP</text>
-        <rect x="148" y="6" width="5" height="76" rx="1" fill="#b8922a"/>
-        <text x="162" y="38" font-family="Arial Black,Impact,sans-serif" font-size="17" font-weight="900" fill="#1a1209" letter-spacing="1">OFİS</text>
-        <text x="162" y="62" font-family="Arial Black,Impact,sans-serif" font-size="17" font-weight="900" fill="#1a1209" letter-spacing="1">MOBİLYALARI</text>
+        <rect x="158" y="6" width="5" height="76" rx="1" fill="#b8922a"/>
+        <g class="footer-logo-right">
+          <text x="172" y="38" font-family="Arial Black,Impact,sans-serif" font-size="17" font-weight="900" fill="#1a1209" letter-spacing="1">OFİS</text>
+          <text x="172" y="62" font-family="Arial Black,Impact,sans-serif" font-size="17" font-weight="900" fill="#1a1209" letter-spacing="1">MOBİLYALARI</text>
+        </g>
       </svg>
+      <style>
+        @media (max-width: 768px) {
+          .footer-logo-svg { width: 260px !important; height: 72px !important; }
+          .footer-logo-right { transform: translateX(-20px); }
+          .footer-center { text-align: left !important; margin: 0 !important; }
+        }
+      </style>
       <style>
         @media (max-width: 768px) {
           .footer-logo-svg { width: 260px !important; height: 72px !important; }
