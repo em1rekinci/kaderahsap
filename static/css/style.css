@@ -51,6 +51,9 @@ body {
 .brand {
     display: inline-block;
     text-align: left;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
 }
 
 .brand-top {
