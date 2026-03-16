@@ -82,14 +82,29 @@
             autoSlideInterval = setInterval(autoSlide, 3000);
         });
         
-        // Touch events için
-        container.addEventListener('touchstart', function() {
+        // Touch swipe desteği
+        let touchStartX = 0;
+
+        container.addEventListener('touchstart', function(e) {
             clearInterval(autoSlideInterval);
-        });
-        
-        container.addEventListener('touchend', function() {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        container.addEventListener('touchend', function(e) {
+            const touchEndX = e.changedTouches[0].screenX;
+            const diff = touchStartX - touchEndX;
+
+            if (Math.abs(diff) > 40) {
+                if (diff > 0) {
+                    currentIndex = (currentIndex + 1) % totalItems;
+                } else {
+                    currentIndex = (currentIndex - 1 + totalItems) % totalItems;
+                }
+                goToSlide(currentIndex);
+            }
+
             autoSlideInterval = setInterval(autoSlide, 3000);
-        });
+        }, { passive: true });
         
     });
     
