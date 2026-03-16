@@ -1,7 +1,6 @@
 from fastapi import FastAPI, Request
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import HTMLResponse
 from data import products, CATEGORIES
 
 app = FastAPI()
@@ -24,11 +23,18 @@ def product_detail(request: Request, product_id: int):
         {"request": request, "product": product, "products": products}
     )
 
+@app.get("/urunler")
+def urunler(request: Request):
+    return templates.TemplateResponse(
+        "urunler.html",
+        {"request": request, "products": products, "categories": CATEGORIES}
+    )
+
 @app.get("/kategori/{slug}")
 def category_page(request: Request, slug: str):
     if slug not in CATEGORIES:
         return templates.TemplateResponse("404.html", {"request": request}, status_code=404)
-    
+
     category = {**CATEGORIES[slug], "slug": slug}
     category_products = [p for p in products if p.get("category") == slug]
     other_categories = [
