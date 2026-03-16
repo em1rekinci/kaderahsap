@@ -1064,9 +1064,9 @@ body {
 
     /* Slider */
     .slider {
-        height: auto;
-        min-height: 480px;
-        max-height: none;
+        height: 80vw;
+        min-height: 280px;
+        max-height: 500px;
     }
     .slide-text {
         left: 14px;
