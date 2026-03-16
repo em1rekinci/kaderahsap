@@ -1,0 +1,492 @@
+{% extends "base.html" %}
+{% block title %}{{ category.name }} — Kader Ahşap Ofis Mobilyaları{% endblock %}
+{% block content %}
+
+<style>
+/* ===== KATEGORİ HERO ===== */
+.category-hero {
+  padding-top: 67px;
+  background: #0e0e0e;
+  position: relative;
+  overflow: hidden;
+  min-height: 260px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.category-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 100% at 90% 50%, rgba(200,168,75,0.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.category-hero-bg-text {
+  position: absolute;
+  right: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Playfair Display', serif;
+  font-size: 180px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.025);
+  line-height: 1;
+  user-select: none;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.category-hero-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 48px 24px 40px;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+.category-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 20px;
+}
+.category-breadcrumb a {
+  color: rgba(255,255,255,0.35);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.category-breadcrumb a:hover { color: #c8a84b; }
+.category-breadcrumb .sep { opacity: 0.3; }
+.category-breadcrumb .current { color: #c8a84b; }
+
+.category-hero-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #c8a84b;
+  font-size: 12px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.category-hero-label span {
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: #c8a84b;
+}
+
+.category-hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(32px, 5vw, 58px);
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.1;
+  margin-bottom: 14px;
+}
+.category-hero h1 em {
+  color: #c8a84b;
+  font-style: italic;
+}
+
+.category-hero-desc {
+  color: rgba(255,255,255,0.4);
+  font-size: 15px;
+  line-height: 1.7;
+  max-width: 520px;
+}
+
+.category-count {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 24px;
+  padding: 8px 18px;
+  border: 1px solid rgba(200,168,75,0.2);
+  border-radius: 20px;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(200,168,75,0.6);
+}
+.category-count strong {
+  color: #c8a84b;
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+/* ===== ÜRÜN GRID ===== */
+.category-products-section {
+  background: #f8f6f2;
+  padding: 60px 0 80px;
+  min-height: 400px;
+}
+
+.category-products-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Filtre / sıralama bar */
+.category-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 32px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.toolbar-left {
+  font-size: 13px;
+  color: #888;
+  letter-spacing: 1px;
+}
+.toolbar-left strong {
+  color: #1a1a1a;
+  font-weight: 600;
+}
+
+/* Ürün grid */
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.cat-product-card {
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  text-decoration: none;
+  color: #111;
+  border: 1px solid rgba(0,0,0,0.06);
+  transition: transform 0.25s, box-shadow 0.25s;
+  display: flex;
+  flex-direction: column;
+}
+.cat-product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.12);
+}
+
+.cat-product-img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  position: relative;
+  background: #eee;
+}
+.cat-product-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s;
+}
+.cat-product-card:hover .cat-product-img img {
+  transform: scale(1.06);
+}
+
+.cat-product-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s;
+}
+.cat-product-card:hover .cat-product-overlay {
+  background: rgba(0,0,0,0.15);
+}
+.cat-product-overlay-btn {
+  background: #c8a84b;
+  color: #fff;
+  padding: 10px 22px;
+  border-radius: 4px;
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 600;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.3s, transform 0.3s;
+}
+.cat-product-card:hover .cat-product-overlay-btn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.cat-product-body {
+  padding: 18px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.cat-product-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 17px;
+  font-weight: 600;
+  color: #111;
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+.cat-product-price-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid #f0ece4;
+}
+.cat-product-price-label {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #b8922a;
+}
+.cat-product-wa {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #25d366;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* Boş durum */
+.category-empty {
+  text-align: center;
+  padding: 80px 24px;
+  color: #999;
+}
+.category-empty h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  color: #555;
+  margin-bottom: 12px;
+}
+
+/* ===== DİĞER KATEGORİLER ===== */
+.other-categories {
+  background: #fff;
+  padding: 60px 0 70px;
+}
+.other-categories-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.other-categories-header {
+  text-align: center;
+  margin-bottom: 36px;
+}
+.other-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 12px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #b8922a;
+}
+.other-label span { display: block; width: 40px; height: 1px; background: #b8922a; opacity: 0.4; }
+
+.other-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+.other-cat-card {
+  text-decoration: none;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  aspect-ratio: 3/2;
+  background: #111;
+  display: block;
+  transition: transform 0.25s;
+}
+.other-cat-card:hover { transform: translateY(-4px); }
+.other-cat-card img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  opacity: 0.55;
+  transition: opacity 0.3s, transform 0.4s;
+}
+.other-cat-card:hover img { opacity: 0.4; transform: scale(1.05); }
+.other-cat-name {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 16px 14px 14px;
+  background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
+  color: #fff;
+  font-family: 'Playfair Display', serif;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+/* ===== MOBİL ===== */
+@media (max-width: 900px) {
+  .category-grid { grid-template-columns: repeat(2, 1fr); }
+  .other-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .category-grid { grid-template-columns: 1fr; gap: 20px; }
+  .category-hero-bg-text { font-size: 80px; }
+  .other-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .cat-product-overlay { display: none; }
+}
+</style>
+
+<!-- HERO -->
+<div class="category-hero">
+  <div class="category-hero-bg-text">{{ category.name | upper }}</div>
+  <div class="category-hero-inner">
+    <div class="category-breadcrumb">
+      <a href="/">Ana Sayfa</a>
+      <span class="sep">›</span>
+      <a href="/urunler">Ürünler</a>
+      <span class="sep">›</span>
+      <span class="current">{{ category.name }}</span>
+    </div>
+    <div class="category-hero-label">
+      <span></span>Koleksiyon
+    </div>
+    <h1>{{ category.name }}</h1>
+    {% if category.description %}
+    <p class="category-hero-desc">{{ category.description }}</p>
+    {% endif %}
+    <div class="category-count">
+      <strong>{{ products | length }}</strong> Ürün
+    </div>
+  </div>
+</div>
+
+<!-- ÜRÜNLER -->
+<section class="category-products-section">
+  <div class="category-products-inner">
+    <div class="category-toolbar">
+      <div class="toolbar-left">
+        <strong>{{ products | length }}</strong> ürün listeleniyor
+      </div>
+    </div>
+
+    {% if products %}
+    <div class="category-grid">
+      {% for product in products %}
+      <a href="/product/{{ product.id }}" class="cat-product-card">
+        <div class="cat-product-img">
+          <img src="{{ product.images[0] }}" alt="{{ product.name }}" loading="lazy">
+          <div class="cat-product-overlay">
+            <div class="cat-product-overlay-btn">İncele</div>
+          </div>
+        </div>
+        <div class="cat-product-body">
+          <div class="cat-product-name">{{ product.name }}</div>
+          <div class="cat-product-price-row">
+            <span class="cat-product-price-label">Fiyat için iletişime geçin</span>
+            <span class="cat-product-wa">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              WA
+            </span>
+          </div>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="category-empty">
+      <h3>Bu kategoride henüz ürün yok</h3>
+      <p>Yakında eklenecek. Sorularınız için bize ulaşın.</p>
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+<!-- DİĞER KATEGORİLER -->
+{% if other_categories %}
+<section class="other-categories">
+  <div class="other-categories-inner">
+    <div class="other-categories-header">
+      <div class="other-label">
+        <span></span>Diğer Kategoriler<span></span>
+      </div>
+    </div>
+    <div class="other-grid">
+      {% for cat in other_categories %}
+      <a href="/kategori/{{ cat.slug }}" class="other-cat-card">
+        <img src="{{ cat.image }}" alt="{{ cat.name }}" loading="lazy">
+        <div class="other-cat-name">{{ cat.name }}</div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- FOOTER (aynısı) -->
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-left">
+      <svg class="footer-logo-svg" width="340" height="92" viewBox="0 0 340 92" xmlns="http://www.w3.org/2000/svg" style="display:block;margin-bottom:14px;">
+        <text x="0" y="44" font-family="Arial Black,Impact,sans-serif" font-size="38" font-weight="900" fill="#1a1209" letter-spacing="1">KADER</text>
+        <text x="0" y="78" font-family="Arial Black,Impact,sans-serif" font-size="38" font-weight="900" fill="#b8922a" letter-spacing="1">AHŞAP</text>
+        <g>
+          <rect x="158" y="6" width="5" height="76" rx="1" fill="#b8922a"/>
+          <text x="172" y="38" font-family="Arial Black,Impact,sans-serif" font-size="17" font-weight="900" fill="#1a1209" letter-spacing="1">OFİS</text>
+          <text x="172" y="62" font-family="Arial Black,Impact,sans-serif" font-size="17" font-weight="900" fill="#1a1209" letter-spacing="1">MOBİLYALARI</text>
+        </g>
+      </svg>
+      <p>Kader Ahşap Ofis Mobilya olarak özel üretim, kaliteli ve uzun ömürlü mobilyalar üretiyoruz.</p>
+    </div>
+    <div class="footer-center">
+      <h4>Ürünler</h4>
+      <ul>
+        <li><a href="/kategori/makam-takimi">Makam Masaları</a></li>
+        <li><a href="/kategori/toplanti-masasi">Toplantı Masaları</a></li>
+        <li><a href="/kategori/dolap">Özel Üretim Dolap</a></li>
+        <li><a href="/kategori/personel-takimi">Personel Takımı</a></li>
+      </ul>
+    </div>
+    <div class="footer-right">
+      <div class="footer-contact">
+        <p>İstanbul / Türkiye</p>
+        <p>📞 +90 544 491 86 17</p>
+        <p>✉ info@kaderahsap.com</p>
+      </div>
+      <div class="footer-social">
+        <h4>Bizi Takip Edin</h4>
+        <div class="socials">
+          <a href="#" class="facebook">f</a>
+          <a href="#" class="instagram">
+            <svg width="16" height="16" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="3" width="30" height="30" rx="8" stroke="white" stroke-width="2.2" fill="none"/>
+              <circle cx="18" cy="18" r="7" stroke="white" stroke-width="2.2" fill="none"/>
+              <circle cx="26.5" cy="9.5" r="1.8" fill="white"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
+    <span>© 2026 Kader Ahşap Mobilya — Tüm Hakları Saklıdır</span>
+    <span>Tasarım &amp; Geliştirme: <a href="https://www.vionasoft.com" target="_blank" style="color:inherit;text-decoration:none;font-weight:600;">Vionasoft</a></span>
+  </div>
+</footer>
+
+{% endblock %}

@@ -216,18 +216,39 @@
 <section class="category-slider">
   <div class="category-container">
     <div class="category-track">
-      <div class="category-item"><div class="category-circle"><img src="/static/images/cilali-masa.jpg" alt="Cilalı Masa Takımı"></div><p>Cilalı Masa Takımı</p></div>
-      <div class="category-item"><div class="category-circle"><img src="/static/images/makam-takimi.jpg" alt="Makam Takımı"></div><p>Makam Takımı</p></div>
-      <div class="category-item"><div class="category-circle"><img src="/static/images/yonetici-takimi.jpg" alt="Yönetici Takımı"></div><p>Yönetici Takımı</p></div>
-      <div class="category-item"><div class="category-circle"><img src="/static/images/personel-takimi.jpg" alt="Personel Takımı"></div><p>Personel Takımı</p></div>
-      <div class="category-item"><div class="category-circle"><img src="/static/images/toplanti-masasi.jpg" alt="Toplantı Masası"></div><p>Toplantı Masası</p></div>
-      <div class="category-item"><div class="category-circle"><img src="/static/images/keson.jpg" alt="Keson"></div><p>Keson</p></div>
-      <div class="category-item"><div class="category-circle"><img src="/static/images/dolap.jpg" alt="Dolap"></div><p>Dolap</p></div>
-      <div class="category-item"><div class="category-circle"><img src="/static/images/banko.jpg" alt="Banko"></div><p>Banko</p></div>
+      <a href="/kategori/cilali-masa-takimi" class="category-item"><div class="category-circle"><img src="/static/images/cilali-masa.jpg" alt="Cilalı Masa Takımı"></div><p>Cilalı Masa Takımı</p></a>
+      <a href="/kategori/makam-takimi" class="category-item"><div class="category-circle"><img src="/static/images/makam-takimi.jpg" alt="Makam Takımı"></div><p>Makam Takımı</p></a>
+      <a href="/kategori/yonetici-takimi" class="category-item"><div class="category-circle"><img src="/static/images/yonetici-takimi.jpg" alt="Yönetici Takımı"></div><p>Yönetici Takımı</p></a>
+      <a href="/kategori/personel-takimi" class="category-item"><div class="category-circle"><img src="/static/images/personel-takimi.jpg" alt="Personel Takımı"></div><p>Personel Takımı</p></a>
+      <a href="/kategori/toplanti-masasi" class="category-item"><div class="category-circle"><img src="/static/images/toplanti-masasi.jpg" alt="Toplantı Masası"></div><p>Toplantı Masası</p></a>
+      <a href="/kategori/keson" class="category-item"><div class="category-circle"><img src="/static/images/keson.jpg" alt="Keson"></div><p>Keson</p></a>
+      <a href="/kategori/dolap" class="category-item"><div class="category-circle"><img src="/static/images/dolap.jpg" alt="Dolap"></div><p>Dolap</p></a>
+      <a href="/kategori/banko" class="category-item"><div class="category-circle"><img src="/static/images/banko.jpg" alt="Banko"></div><p>Banko</p></a>
     </div>
   </div>
   <div class="category-dots"></div>
 </section>
+
+<style>
+a.category-item {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+a.category-item .category-circle {
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+a.category-item:hover .category-circle {
+  transform: scale(1.07);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+a.category-item p {
+  transition: color 0.2s;
+}
+a.category-item:hover p {
+  color: #b8922a;
+}
+</style>
 
 <section class="products">
   {% for product in products %}
