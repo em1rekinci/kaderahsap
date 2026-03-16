@@ -1,12 +1,24 @@
 from fastapi import FastAPI, Request
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.exceptions import HTTPException
+from starlette.middleware.base import BaseHTTPMiddleware
 from typing import Optional
 from data import products, CATEGORIES
 
 app = FastAPI()
+
+# www yönlendirme middleware
+class WWWRedirectMiddleware(BaseHTTPMiddleware):
+    async def dispatch(self, request: Request, call_next):
+        host = request.headers.get("host", "")
+        if host and not host.startswith("www.") and "localhost" not in host and "railway" not in host:
+            url = str(request.url).replace(f"://{host}", f"://www.{host}", 1)
+            return RedirectResponse(url=url, status_code=301)
+        return await call_next(request)
+
+app.add_middleware(WWWRedirectMiddleware)
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
