@@ -1,0 +1,198 @@
+{% extends "base.html" %}
+{% block title %}Sayfa Bulunamadı — Kader Ahşap Ofis Mobilyaları{% endblock %}
+{% block content %}
+
+<style>
+.not-found {
+  min-height: calc(100vh - 67px);
+  background: #0e0e0e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding-top: 67px;
+}
+
+.not-found::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(200,168,75,0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.not-found-bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(180px, 30vw, 360px);
+  font-weight: 700;
+  color: rgba(255,255,255,0.018);
+  line-height: 1;
+  user-select: none;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.not-found-inner {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 0 24px;
+  animation: fadeUp 0.7s ease both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.not-found-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #c8a84b;
+  font-size: 12px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+}
+.not-found-label span {
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: #c8a84b;
+}
+
+.not-found-code {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(72px, 15vw, 140px);
+  font-weight: 700;
+  color: #c8a84b;
+  line-height: 1;
+  margin-bottom: 16px;
+  letter-spacing: -2px;
+}
+
+.not-found-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(22px, 4vw, 36px);
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+
+.not-found-desc {
+  color: rgba(255,255,255,0.35);
+  font-size: 15px;
+  line-height: 1.7;
+  max-width: 420px;
+  margin: 0 auto 40px;
+}
+
+.not-found-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.nf-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  background: #c8a84b;
+  color: #0e0e0e;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  transition: background 0.2s, transform 0.2s;
+}
+.nf-btn-primary:hover {
+  background: #d4b55e;
+  transform: translateY(-2px);
+}
+
+.nf-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  background: transparent;
+  color: rgba(255,255,255,0.6);
+  text-decoration: none;
+  border-radius: 4px;
+  border: 1px solid rgba(255,255,255,0.12);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: border-color 0.2s, color 0.2s, transform 0.2s;
+}
+.nf-btn-secondary:hover {
+  border-color: rgba(200,168,75,0.4);
+  color: #c8a84b;
+  transform: translateY(-2px);
+}
+
+.not-found-divider {
+  width: 1px;
+  height: 40px;
+  background: rgba(255,255,255,0.08);
+  margin: 48px auto 0;
+}
+
+.not-found-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  margin-top: 32px;
+  flex-wrap: wrap;
+}
+.not-found-links a {
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.25);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.not-found-links a:hover { color: #c8a84b; }
+</style>
+
+<div class="not-found">
+  <div class="not-found-bg">404</div>
+  <div class="not-found-inner">
+    <div class="not-found-label">
+      <span></span>Hata<span></span>
+    </div>
+    <div class="not-found-code">404</div>
+    <h1 class="not-found-title">Sayfa Bulunamadı</h1>
+    <p class="not-found-desc">
+      Aradığınız sayfa taşınmış, silinmiş ya da hiç var olmamış olabilir.
+    </p>
+    <div class="not-found-actions">
+      <a href="/" class="nf-btn-primary">Ana Sayfaya Dön</a>
+      <a href="/urunler" class="nf-btn-secondary">Ürünleri İncele</a>
+    </div>
+    <div class="not-found-divider"></div>
+    <div class="not-found-links">
+      <a href="/kategori/makam-takimi">Makam Takımı</a>
+      <a href="/kategori/yonetici-takimi">Yönetici Takımı</a>
+      <a href="/kategori/dolap">Dolaplar</a>
+      <a href="/iletisim">İletişim</a>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
