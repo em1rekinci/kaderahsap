@@ -1075,9 +1075,9 @@ body {
     }
     .slide-text h2 { font-size: 17px; margin-bottom: 5px; }
     .slide-text span { font-size: 12px; }
-    .arrow { font-size: 30px; padding: 6px; }
-    .arrow.left { left: 6px; }
-    .arrow.right { right: 6px; }
+    .arrow { font-size: 22px; padding: 4px; opacity: 0.5; }
+    .arrow.left { left: 2px; }
+    .arrow.right { right: 2px; }
 
     /* Kategori slider */
     .category-slider { padding: 16px 0; overflow: hidden; }

@@ -106,23 +106,30 @@
   .slide-bg-text { display: none !important; }
 
   .slide-row {
-    padding: 0 16px !important;
-    gap: 8px !important;
+    padding: 0 0 0 16px !important;
+    gap: 0 !important;
+    align-items: center !important;
   }
 
   .slide-content {
     padding: 0 !important;
-    max-width: 55% !important;
+    max-width: 52% !important;
+    flex: 1 !important;
   }
 
   .slide-content h2 {
-    font-size: clamp(18px, 5vw, 28px) !important;
-    margin-bottom: 8px !important;
+    font-size: clamp(16px, 4.5vw, 26px) !important;
+    margin-bottom: 6px !important;
   }
 
   .slide-content p {
-    font-size: 11px !important;
+    font-size: 10px !important;
     line-height: 1.6 !important;
+  }
+
+  .slide-content > div:first-child {
+    margin-bottom: 10px !important;
+    font-size: 9px !important;
   }
 
   .slide-side {
@@ -131,6 +138,7 @@
     top: auto !important;
     transform: none !important;
     margin: 0 !important;
+    display: none !important;
   }
 
   .slide-line { display: none !important; }
@@ -141,25 +149,11 @@
   }
 
   .slide-photo {
-    width: 38% !important;
+    width: 42% !important;
   }
   .slide-photo-wave {
-    width: 40px !important;
+    width: 36px !important;
   }
-
-  .stat-list {
-    padding-left: 16px !important;
-  }
-  .stat-item { padding: 8px 0 !important; }
-  .stat-item div:first-child { font-size: 28px !important; }
-  .stat-item div:last-child { font-size: 9px !important; }
-
-  .stat-row {
-    padding: 8px 0 8px 12px !important;
-    gap: 6px !important;
-  }
-  .stat-row div:first-child { font-size: 24px !important; }
-  .stat-row div:last-child { font-size: 9px !important; }
 }
 </style>
 
