@@ -31,12 +31,12 @@ CATEGORIES = {
     "makam-takimi": {
         "name": "Makam Takımı",
         "description": "Üst düzey yöneticiler için tasarlanmış, temsil gücü yüksek makam mobilya takımları.",
-        "image": "/static/images/makam-takimi.jpg"
+        "image": "/static/images/makam-takimi.png"
     },
     "yonetici-takimi": {
         "name": "Yönetici Takımı",
         "description": "Fonksiyonelliği estetikle buluşturan yönetici ofis takımları.",
-        "image": "/static/images/yonetici-takimi.jpg"
+        "image": "/static/images/yonetici-takimi.png"
     },
     "personel-takimi": {
         "name": "Personel Takımı",
@@ -46,21 +46,21 @@ CATEGORIES = {
     "toplanti-masasi": {
         "name": "Toplantı Masası",
         "description": "Her boyut ve kapasitede, profesyonel toplantı odaları için masalar.",
-        "image": "/static/images/toplanti-masasi.jpg"
+        "image": "/static/images/toplanti-masasi.png"
     },
     "keson": {
         "name": "Keson",
         "description": "Ofis organizasyonunu tamamlayan, sağlam ve şık keson modelleri.",
-        "image": "/static/images/keson.jpg"
+        "image": "/static/images/keson.png"
     },
     "dolap": {
         "name": "Ofis Dolapları",
         "description": "Geniş depolama kapasitesi ve modern tasarımla ofis dolapları.",
-        "image": "/static/images/dolap.jpg"
+        "image": "/static/images/dolap.png"
     },
     "banko": {
         "name": "Bankolar",
         "description": "Resepsiyondan bekleme alanlarına kadar her mekâna özel banko tasarımları.",
-        "image": "/static/images/banko.jpg"
+        "image": "/static/images/banko.png"
     },
 }
