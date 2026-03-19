@@ -1,105 +1,180 @@
 {% extends "base.html" %}
-{% block title %}Projelerimiz - Kader Ahşap Ofis Mobilyaları<footer class="footer">
-  <div class="footer-container">
-    <div class="footer-left">
-      <!-- LOGO -->
-      <svg class="footer-logo-svg" width="340" height="92" viewBox="0 0 340 92" xmlns="http://www.w3.org/2000/svg" style="display:block;margin-bottom:14px;">
-        <text x="0" y="44" font-family="Arial Black,Impact,sans-serif" font-size="38" font-weight="900" fill="#1a1209" letter-spacing="1">KADER</text>
-        <text x="0" y="78" font-family="Arial Black,Impact,sans-serif" font-size="38" font-weight="900" fill="#b8922a" letter-spacing="1">AHŞAP</text>
-        <g class="footer-logo-right">
-          <rect x="158" y="6" width="5" height="76" rx="1" fill="#b8922a"/>
-          <text x="172" y="38" font-family="Arial Black,Impact,sans-serif" font-size="17" font-weight="900" fill="#1a1209" letter-spacing="1">OFİS</text>
-          <text x="172" y="62" font-family="Arial Black,Impact,sans-serif" font-size="17" font-weight="900" fill="#1a1209" letter-spacing="1">MOBİLYALARI</text>
-        </g>
-      </svg>
-      <style>
-        @media (max-width: 768px) {
-          .footer-logo-svg { width: 280px !important; height: 76px !important; }
-          .footer-logo-svg .footer-logo-right { transform: translateX(-43px); }
-          .footer-center { text-align: left !important; margin: 0 !important; }
-        }
-      </style>
-      <p>Kader Ahşap Mobilya olarak özel üretim, kaliteli ve uzun ömürlü mobilyalar üretiyoruz.</p>
-    </div>
-    <div class="footer-center">
-      <h4>Ürünler</h4>
-      <ul>
-        <li><a href="/kategori/makam-takimi">Makam Masaları</a></li>
-        <li><a href="/kategori/toplanti-masasi">Toplantı Masaları</a></li>
-        <li><a href="/kategori/dolap">Özel Üretim Dolap</a></li>
-        <li><a href="/kategori/personel-takimi">Ofis Mobilyaları</a></li>
-      </ul>
-    </div>
-    <div class="footer-right">
-      <div class="footer-contact">
-        <p>İstanbul / Türkiye</p>
-        <p>📞 +90 544 491 86 17</p>
-        <p>✉ info@kaderahsap.com</p>
-      </div>
-      <div class="footer-social">
-        <h4>Bizi Takip Edin</h4>
-        <div class="socials">
-          <a href="https://www.facebook.com/profile.php?id=61579480651093" class="facebook" target="_blank" rel="noopener noreferrer">f</a>
-          <a href="https://www.instagram.com/kaderahsapofficefurniture/" class="instagram" target="_blank" rel="noopener noreferrer">
-            <svg width="16" height="16" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="3" y="3" width="30" height="30" rx="8" stroke="white" stroke-width="2.2" fill="none"/>
-              <circle cx="18" cy="18" r="7" stroke="white" stroke-width="2.2" fill="none"/>
-              <circle cx="26.5" cy="9.5" r="1.8" fill="white"/>
-            </svg>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="footer-bottom" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
-    <span>© 2026 Kader Ahşap Mobilya — Tüm Hakları Saklıdır</span>
-    <span>Tasarım &amp; Geliştirme: <a href="https://www.vionasoft.com" target="_blank" style="color:inherit;text-decoration:none;font-weight:600;">Vionasoft</a></span>
-  </div>
-</footer>
-
-{% endblock %}
+{% block title %}Projelerimiz - Kader Ahşap Ofis Mobilyaları{% endblock %}
 {% block content %}
 
+<style>
+.projects-page {
+  padding: 100px 80px 80px;
+  background: #f9f6f0;
+  min-height: 60vh;
+}
+
+.projects-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.projects-header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(32px, 5vw, 56px);
+  color: #1a1209;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+.projects-header p {
+  color: #7a6a50;
+  font-size: 16px;
+  letter-spacing: 1px;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.project-card {
+  background: #fff;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.13);
+}
+
+.project-card img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  display: block;
+}
+
+.project-info {
+  padding: 24px;
+  position: relative;
+}
+
+.project-info h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  color: #1a1209;
+  font-weight: 700;
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.project-info p {
+  color: #7a6a50;
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+.project-year {
+  display: inline-block;
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: #b8922a;
+  text-transform: uppercase;
+  border-top: 1px solid rgba(184,146,42,0.25);
+  padding-top: 12px;
+  width: 100%;
+}
+
+/* 5. kart ortala */
+.projects-grid .project-card:last-child:nth-child(3n+2) {
+  grid-column: 2;
+}
+
+@media (max-width: 900px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .projects-grid .project-card:last-child:nth-child(3n+2) {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .projects-page {
+    padding: 80px 16px 48px;
+  }
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .project-card img {
+    height: 200px;
+  }
+}
+</style>
+
 <section class="projects-page">
-    <div class="projects-header">
-        <h1>Projelerimiz</h1>
-        <p>Tamamladığımız başarılı projelerimizden bazıları</p>
+  <div class="projects-header">
+    <h1>Projelerimiz</h1>
+    <p>Tamamladığımız başarılı projelerimizden bazıları</p>
+  </div>
+
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <img src="/static/images/proje1.jpeg" alt="Lüleburgaz Kaymakamlığı">
+      <div class="project-info">
+        <h3>Lüleburgaz Kaymakamlığı</h3>
+        <p>Lüleburgaz Kaymakamlığı için özel üretim makam ve ofis mobilyaları</p>
+        <span class="project-year">2024</span>
+      </div>
     </div>
 
-    <div class="projects-grid">
-        <div class="project-card">
-            <img src="/static/images/proje1.jpg" alt="Bakanlık Binası - Müdür Odası">
-            <div class="project-info">
-                <h3>Bakanlık Binası Mobilyaları</h3>
-                <p>T.C. Sağlık Bakanlığı için özel üretim ofis mobilyaları</p>
-                <span class="project-year">2024</span>
-            </div>
-        </div>
-
-        <div class="project-card">
-            <img src="/static/images/proje2.jpg" alt="Bakanlık Binası - Makam Odası">
-            <div class="project-info">
-                <h3>Bakanlık Binası Mobilyaları</h3>
-                <p>T.C. Sağlık Bakanlığı için özel üretim ofis mobilyaları</p>
-                <span class="project-year">2024</span>
-            </div>
-        </div>
-
-        <div class="project-card">
-            <img src="/static/images/toplantı.jpg" alt="Bakanlık Binası - Toplantı Odası">
-            <div class="project-info">
-                <h3>Bakanlık Binası Mobilyaları</h3>
-                <p>T.C. Sağlık Bakanlığı için özel üretim ofis mobilyaları</p>
-                <span class="project-year">2024</span>
-            </div>
-        </div>
+    <div class="project-card">
+      <img src="/static/images/proje2.jpeg" alt="Sarıyer Orman Genel Müdürlüğü">
+      <div class="project-info">
+        <h3>Sarıyer Orman Genel Müdürlüğü</h3>
+        <p>T.C. Orman Genel Müdürlüğü Sarıyer Şefliği için özel üretim ofis mobilyaları</p>
+        <span class="project-year">2024</span>
+      </div>
     </div>
+
+    <div class="project-card">
+      <img src="/static/images/proje3.jpeg" alt="Konya Selçuk Üniversitesi Rektörlüğü">
+      <div class="project-info">
+        <h3>Konya Selçuk Üniversitesi Rektörlüğü</h3>
+        <p>Selçuk Üniversitesi Rektörlüğü için özel tasarım makam ve toplantı mobilyaları</p>
+        <span class="project-year">2024</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <img src="/static/images/proje4.jpeg" alt="Sakarya Adapazarı Üniversitesi">
+      <div class="project-info">
+        <h3>Sakarya Adapazarı Üniversitesi</h3>
+        <p>Sakarya Üniversitesi Adapazarı kampüsü için özel üretim ofis mobilyaları</p>
+        <span class="project-year">2024</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <img src="/static/images/proje5.jpeg" alt="Sakarya SGK Kurumu">
+      <div class="project-info">
+        <h3>Sakarya SGK Kurumu</h3>
+        <p>Sakarya Sosyal Güvenlik Kurumu için özel üretim ofis ve personel mobilyaları</p>
+        <span class="project-year">2024</span>
+      </div>
+    </div>
+
+  </div>
 </section>
 
 <footer class="footer">
   <div class="footer-container">
     <div class="footer-left">
-      <!-- LOGO -->
       <svg class="footer-logo-svg" width="340" height="92" viewBox="0 0 340 92" xmlns="http://www.w3.org/2000/svg" style="display:block;margin-bottom:14px;">
         <text x="0" y="44" font-family="Arial Black,Impact,sans-serif" font-size="38" font-weight="900" fill="#1a1209" letter-spacing="1">KADER</text>
         <text x="0" y="78" font-family="Arial Black,Impact,sans-serif" font-size="38" font-weight="900" fill="#b8922a" letter-spacing="1">AHŞAP</text>
@@ -111,8 +186,7 @@
       </svg>
       <style>
         @media (max-width: 768px) {
-          .footer-logo-svg { width: 280px !important; height: 76px !important; }
-          .footer-logo-svg .footer-logo-right { transform: translateX(-43px); }
+          .footer-logo-svg { width: 260px !important; height: 72px !important; }
           .footer-center { text-align: left !important; margin: 0 !important; }
         }
       </style>
