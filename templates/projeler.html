@@ -138,6 +138,16 @@
       </div>
     </div>
 
+    <div class="project-card project-card-gallery" onclick="openGallery()">
+      <div class="gallery-badge">📷 3 Fotoğraf</div>
+      <img src="/static/images/duzce1.jpeg" alt="Düzce Hastanesi">
+      <div class="project-info">
+        <h3>Düzce Hastanesi</h3>
+        <p>Düzce Hastanesi için özel üretim ofis ve yönetim mobilyaları</p>
+        <div class="project-year">2024</div>
+      </div>
+    </div>
+
     <div class="project-card">
       <img src="/static/images/proje2.jpeg" alt="Sarıyer Orman Genel Müdürlüğü">
       <div class="project-info">
@@ -174,17 +184,146 @@
       </div>
     </div>
 
-    <div class="project-card">
-      <img src="/static/images/proje6.jpeg" alt="Beşiktaş Sosyal Güvenlik Kurumu">
-      <div class="project-info">
-        <h3>Beşiktaş Sosyal Güvenlik Kurumu</h3>
-        <p>Beşiktaş SGK Müdürlüğü için özel üretim ofis ve personel mobilyaları</p>
-        <div class="project-year">2024</div>
-      </div>
-    </div>
-
   </div>
 </section>
+
+<!-- Lightbox Modal -->
+<div id="galleryModal" class="gallery-modal" onclick="closeGallery(event)">
+  <div class="gallery-modal-inner">
+    <button class="gallery-close" onclick="closeGallery()">✕</button>
+    <button class="gallery-prev" onclick="changePhoto(-1)">‹</button>
+    <button class="gallery-next" onclick="changePhoto(1)">›</button>
+    <img id="galleryImg" src="" alt="Düzce Hastanesi">
+    <div class="gallery-counter"><span id="galleryCount">1</span> / 3</div>
+  </div>
+</div>
+
+<style>
+.project-card-gallery {
+  cursor: pointer;
+  position: relative;
+}
+.gallery-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(0,0,0,0.55);
+  color: #fff;
+  font-size: 11px;
+  letter-spacing: 1px;
+  padding: 5px 10px;
+  border-radius: 20px;
+  z-index: 2;
+  backdrop-filter: blur(4px);
+}
+.gallery-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.88);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+}
+.gallery-modal.open {
+  display: flex;
+}
+.gallery-modal-inner {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.gallery-modal-inner img {
+  max-width: 90vw;
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: 4px;
+  display: block;
+}
+.gallery-close {
+  position: fixed;
+  top: 20px;
+  right: 28px;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 28px;
+  cursor: pointer;
+  z-index: 10000;
+  line-height: 1;
+}
+.gallery-prev, .gallery-next {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.1);
+  border: none;
+  color: #fff;
+  font-size: 48px;
+  cursor: pointer;
+  padding: 8px 18px;
+  border-radius: 4px;
+  line-height: 1;
+  z-index: 10000;
+  transition: background 0.2s;
+}
+.gallery-prev:hover, .gallery-next:hover {
+  background: rgba(255,255,255,0.2);
+}
+.gallery-prev { left: 16px; }
+.gallery-next { right: 16px; }
+.gallery-counter {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255,255,255,0.6);
+  font-size: 13px;
+  letter-spacing: 2px;
+}
+</style>
+
+<script>
+const photos = [
+  '/static/images/duzce1.jpeg',
+  '/static/images/duzce2.jpeg',
+  '/static/images/duzce3.jpeg'
+];
+let currentPhoto = 0;
+
+function openGallery() {
+  currentPhoto = 0;
+  updateGalleryImg();
+  document.getElementById('galleryModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeGallery(e) {
+  if (e && e.target !== document.getElementById('galleryModal')) return;
+  document.getElementById('galleryModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function changePhoto(dir) {
+  currentPhoto = (currentPhoto + dir + photos.length) % photos.length;
+  updateGalleryImg();
+}
+
+function updateGalleryImg() {
+  document.getElementById('galleryImg').src = photos[currentPhoto];
+  document.getElementById('galleryCount').textContent = currentPhoto + 1;
+}
+
+document.addEventListener('keydown', function(e) {
+  if (!document.getElementById('galleryModal').classList.contains('open')) return;
+  if (e.key === 'ArrowRight') changePhoto(1);
+  if (e.key === 'ArrowLeft') changePhoto(-1);
+  if (e.key === 'Escape') { document.getElementById('galleryModal').classList.remove('open'); document.body.style.overflow = ''; }
+});
+</script>
 
 <footer class="footer">
   <div class="footer-container">
